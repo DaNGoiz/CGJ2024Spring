@@ -59,8 +59,8 @@ namespace YSFramework
                 case ResourceType.Material:
                     o = Resources.Load<Material>("Materials/" + objectName);
                     break;
-                case ResourceType.Player:
-                    o = Resources.Load<GameObject>("Players/" + objectName);
+                case ResourceType.Plant:
+                    o = Resources.Load<Material>("Plants/" + objectName);
                     if (o != null)
                         o = Instantiate((GameObject)o);
                     break;
