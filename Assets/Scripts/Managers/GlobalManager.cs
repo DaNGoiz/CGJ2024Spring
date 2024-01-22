@@ -13,13 +13,13 @@ namespace YSFramework
     /// </summary>
     public class GlobalManager : Sington<GlobalManager>
     {
-
+        private static Timer timer;
+        public static Timer GlobalTimer { get { return timer; } }
         /// <summary>
         /// 在项目开始时完成所有管理类的生成和绑定，并确保在每个场景中只有一个GlobalManager类
         /// </summary>
         protected override void Awake()
         {
-
             if (GameObject.FindObjectsOfType<GlobalManager>().Length > 1)
             {
                 Destroy(gameObject);
@@ -33,6 +33,7 @@ namespace YSFramework
                 DontDestroyOnLoad(this.gameObject);
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }
+            timer = GetComponent<Timer>();
             base.Awake();
         }
 
@@ -51,14 +52,6 @@ namespace YSFramework
         /// <param name="arg1">载入场景模式</param>
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (arg0.name.Equals("Main"))
-            {
-                
-                GameObject go= (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
-                go.transform.position = Vector3.zero;
-                print(go);
-            }
         }
-
     }
 }

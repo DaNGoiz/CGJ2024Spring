@@ -15,7 +15,7 @@ namespace YSFramework
         #region 属性和字段
         byte[] data = new byte[128];//用于存储128位数据
         byte[] buffer = new byte[128];
-        
+
         private SerialPort sp = null;
         private Thread threadRead = null;
         private Thread threadWrite = null;
@@ -44,10 +44,10 @@ namespace YSFramework
             EventCenter.AddListener<DataMappingModel>(EventCode.WriteCommunication, CommunicationWrite);
 
         }
-       /// <summary>
-       /// 写通讯方法，将映射数据写入到串口
-       /// </summary>
-       /// <param name="model"></param>
+        /// <summary>
+        /// 写通讯方法，将映射数据写入到串口
+        /// </summary>
+        /// <param name="model"></param>
         private void CommunicationWrite(DataMappingModel model)
         {
             if (!this.communicationName.Equals(model.CommunicationName)) return;
