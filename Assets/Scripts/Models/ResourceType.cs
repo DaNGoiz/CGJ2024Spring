@@ -30,8 +30,8 @@
         /// </summary>
         Material,
         /// <summary>
-        /// 玩家资源
+        /// 释放孢子的花和蘑菇
         /// </summary>
-        Player,
+        Plant,
     }
 }
