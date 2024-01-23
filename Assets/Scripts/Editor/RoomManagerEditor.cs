@@ -6,12 +6,16 @@ public class RoomManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector(); // 绘制默认的Inspector
+        DrawDefaultInspector();
 
         RoomManager roomManager = (RoomManager)target;
         if (GUILayout.Button("Next Room"))
         {
             roomManager.LoadNextRoom();
+        }
+        if (GUILayout.Button("Previous Room"))
+        {
+            roomManager.LoadPreviousRoom();
         }
     }
 }
