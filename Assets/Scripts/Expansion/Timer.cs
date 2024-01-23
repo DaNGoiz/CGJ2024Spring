@@ -12,9 +12,13 @@ public class Timer : MonoBehaviour
     /// 创建一个计时器
     /// </summary>
     /// <param name="name">计时器的名字</param>
-    public void CreateTimer(string name)
+    /// <returns>是否创建成功</returns>
+    public bool CreateTimer(string name)
     {
+        if (ContainTimer(name))
+            return false;
         timers.Add(name, new InnerTimer());
+        return true;
     }
     /// <summary>
     /// 销毁计时器
@@ -61,7 +65,7 @@ public class Timer : MonoBehaviour
         if (timers != null)
             foreach (KeyValuePair<string, InnerTimer> timer in timers)
             {
-                if (timer.Value.running)
+                if (timer.Value.isRunning)
                     timer.Value.RunningTime += Time.deltaTime;
             }
     }
@@ -72,26 +76,26 @@ public class Timer : MonoBehaviour
         /// <summary>
         /// 计时器是否正在运行
         /// </summary>
-        public bool running = false;
+        public bool isRunning = false;
         /// <summary>
         /// 计时器运行的时间（暂停时不计时）
         /// </summary>
         public float RunningTime { get; set; }
         public void StartTimer(bool reset = false)
         {
-            running = true;
+            isRunning = true;
             if (reset)
                 RunningTime = 0;
         }
         public void StopTimer()
         {
-            running = false;
+            isRunning = false;
         }
         public void ResetTimer(bool startImmediately = false)
         {
             RunningTime = 0;
             if (!startImmediately)
-                running = false;
+                isRunning = false;
         }
     }
 }

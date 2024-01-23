@@ -5,7 +5,7 @@ using UnityEngine;
 using YSFramework;
 using static YSFramework.GlobalManager;
 
-public class SpittingFlower : Plant
+public class ThrowingFlower : Plant
 {
     [SerializeField]
     private Vector2 firePosUp;
@@ -19,7 +19,7 @@ public class SpittingFlower : Plant
     {
         //生成一个随机不重复名字作为计时器名
         do
-            timerName = "SpittingFlower" + Random.Range(0f, 100f);
+            timerName = "ThrowingFlower" + Random.Range(0f, 100f);
         while (!GlobalTimer.CreateTimer(timerName));
         SwitchMode(AttackMode.Auto);
         FaceTo(1, 0);

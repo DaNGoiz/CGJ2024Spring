@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static YSFramework.GlobalManager;
 
 public class Plant : MonoBehaviour
@@ -10,6 +11,9 @@ public class Plant : MonoBehaviour
     [SerializeField]
     protected SpriteRenderer m_renderer;
 
+    /// <summary>
+    /// 攻击模式，自动攻击会间隔一段时间攻击一次，触发式攻击需要外部调用攻击方法。默认为自动攻击
+    /// </summary>
     public enum AttackMode
     {
         Auto,
@@ -25,14 +29,11 @@ public class Plant : MonoBehaviour
     /// <summary>
     /// X轴朝向
     /// </summary>
-    public int DirX;
+    public int dirX;
     /// <summary>
     /// Y轴朝向
     /// </summary>
-    public int DirY;
-    /// <summary>
-    /// 攻击模式，自动攻击会间隔一段时间攻击一次，触发式攻击需要外部调用攻击方法。默认为自动攻击
-    /// </summary>
+    public int dirY;
     protected string timerName;
     protected void SwitchMode(AttackMode mode)
     {
@@ -48,14 +49,28 @@ public class Plant : MonoBehaviour
                 break;
         }
     }
-    public void FaceTo(int dirX, int dirY)
+    /// <summary>
+    /// 改变朝向
+    /// </summary>
+    /// <param name="dirX">X轴朝向</param>
+    /// <param name="dirY">Y轴朝向</param>
+    /// <param name="setAnimParam">是否一起改变动画机参数</param>
+    public void FaceTo(int dirX, int dirY, bool setAnimParam = true)
     {
-        m_animator.SetFloat("PosX", dirX);
-        DirX = dirX;
-        m_animator.SetFloat("PosY", dirY);
-        DirY = dirY;
+        this.dirX = dirX;
+        this.dirY = dirY;
+        if (setAnimParam)
+        {
+            m_animator.SetFloat("PosX", dirX);
+            m_animator.SetFloat("PosY", dirY);
+        }
     }
+    //暂时
     protected void Attack()
+    {
+        m_animator.SetTrigger("Attack");
+    }
+    protected void Attack(Projectile proj, Vector2 dir)
     {
         m_animator.SetTrigger("Attack");
     }
