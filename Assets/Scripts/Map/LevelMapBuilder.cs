@@ -54,16 +54,29 @@ public class LevelMapBuilder : MonoBehaviour
 
     void PlaceRoomInGameSpace(GameObject room, int x, int y, string roomName)
     {
-        // 在游戏空间的二维数组中记录房间的占位
+        // 在空间的二维数组中记录房间的占位
         gameSpace[x, y] = roomName;
         roomDictionary.Add(roomName, room);
     }
 
+    /// <summary>
+    /// 1. 随机抽取一个房间
+    /// 2. 检测房间在指定方向是否存在门
+    /// 3. 把两个门的位置对准，随后检测房间放在坐标里是否与其他房间重叠
+    /// 4. 连接其他方向上可能两两相对的门
+    /// 
+    /// 确认以后就给房间之间绑定门
+    /// 
+    /// 虚拟对接 & 实际对接都要存在，先有虚拟对接，然后实际对接就是把虚拟对接的门的位置对准然后传送。
+    /// 改为3x4的核心
+    /// </summary>
+    /// <param name="roomIndex"></param>
     void AddRandomRoom(int roomIndex)
     {
         // 随机抽取并添加房间的逻辑
         // 确保房间不重复并且能够连接
-        // 记录房间名和地形
+
+        // 记录房间名
     }
 
     void PlaceEndRoom(GameObject endRoom, int roomIndex)
