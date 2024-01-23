@@ -1,4 +1,0 @@
-repository "CGJ2024_Spring@CGJ2024Spring@cloud"
-  path "/"
-    br "/main"
-    co "/main"
