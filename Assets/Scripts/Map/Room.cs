@@ -7,7 +7,8 @@ public class Room : MonoBehaviour
         Up,
         Down,
         Left,
-        Right
+        Right,
+        Null
     }
 
     public Direction entryDirection;

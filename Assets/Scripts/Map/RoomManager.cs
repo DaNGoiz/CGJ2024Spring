@@ -3,6 +3,21 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 
+/// 以enter和exit的坐标为基准，来确定下一个生成房间的位置
+/// 进入到下一个房间前生成下下个房间i.e.一开始就要生成两个房间
+/// 也可以在豁口回去上一个房间，镜头也会移动回去
+/// 
+/// 右上角小地图图标UI，显示当前房间的位置
+/// 生成房间的总数阈值（会随机抽阈值内的一个数为房间总数）
+/// * 方向enum再多一个null，表示不生成房间
+/// 
+/// 离开最后一个房间时时间放缓直到停止，除了玩家层以外屏幕发白，然后显示胜利界面
+/// 
+/// 光效插件研究
+/// 场景光影和粒子特效
+/// </summary>
 public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
