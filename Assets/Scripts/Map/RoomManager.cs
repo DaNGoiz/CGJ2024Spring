@@ -35,13 +35,15 @@ public class RoomManager : MonoBehaviour
 
     void LoadInitialRooms()
     {
+        // 实例化并激活第一个房间
         GameObject firstRoom = Instantiate(roomPrefabs[0]);
-        usedRoomPrefabs.Add(roomPrefabs[0]); // 将第一个房间添加到已使用列表
+        usedRoomPrefabs.Add(roomPrefabs[0]);
         roomHistory.Push(firstRoom);
         currentRoom = firstRoom;
         UpdateCamera(currentRoom);
 
-        PreloadNextRoom(); // 预加载下一个房间
+        // 预加载并激活第二个房间，但确保相机聚焦在第一个房间
+        PreloadNextRoom();
     }
 
     void PreloadNextRoom()
@@ -49,14 +51,15 @@ public class RoomManager : MonoBehaviour
         Room currentRoomScript = currentRoom.GetComponent<Room>();
         Room.Direction exitDirection = currentRoomScript.exitDirection;
         Room.Direction oppositeDirection = GetOppositeDirection(exitDirection);
-
-        GameObject nextRoomPrefab = SelectNextRoomPrefab(oppositeDirection);
-        if (nextRoomPrefab != null)
+        GameObject secondRoomPrefab = SelectNextRoomPrefab(oppositeDirection);
+        if (secondRoomPrefab != null)
         {
-            nextRoom = Instantiate(nextRoomPrefab);
-            nextRoom.SetActive(false); // 隐藏预加载的房间
+            nextRoom = Instantiate(secondRoomPrefab);
+            nextRoom.SetActive(true); // 立即激活第二个房间
+            usedRoomPrefabs.Add(secondRoomPrefab);
         }
     }
+
 
     public void LoadNextRoom()
     {
