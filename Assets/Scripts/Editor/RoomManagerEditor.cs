@@ -9,10 +9,26 @@ public class RoomManagerEditor : Editor
         DrawDefaultInspector();
 
         RoomManager roomManager = (RoomManager)target;
-        if (GUILayout.Button("Next Room"))
+        if (GUILayout.Button("Load Next Room Up"))
         {
-            roomManager.LoadNextRoom();
+            roomManager.LoadNextRoom(Room.Direction.Up);
         }
+
+        if (GUILayout.Button("Load Next Room Down"))
+        {
+            roomManager.LoadNextRoom(Room.Direction.Down);
+        }
+
+        if (GUILayout.Button("Load Next Room Left"))
+        {
+            roomManager.LoadNextRoom(Room.Direction.Left);
+        }
+
+        if (GUILayout.Button("Load Next Room Right"))
+        {
+            roomManager.LoadNextRoom(Room.Direction.Right);
+        }
+        
         if (GUILayout.Button("Previous Room"))
         {
             roomManager.LoadPreviousRoom();

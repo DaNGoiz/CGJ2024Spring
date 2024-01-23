@@ -4,73 +4,70 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-/// <summary>
-/// 
-/// 以enter和exit的坐标为基准，来确定下一个生成房间的位置
-/// 进入到下一个房间前生成下下个房间i.e.一开始就要生成两个房间
-/// 也可以在豁口回去上一个房间，镜头也会移动回去
-/// 
-/// 右上角小地图图标UI，显示当前房间的位置
-/// 生成房间的总数阈值（会随机抽阈值内的一个数为房间总数）
-/// * 方向enum再多一个null，表示不生成房间
-/// 
-/// 离开最后一个房间时时间放缓直到停止，除了玩家层以外屏幕发白，然后显示胜利界面
-/// 
-/// 光效插件研究
-/// 场景光影和粒子特效
-/// </summary>
+public class RoomNode
+{
+    public GameObject Room;
+    public Dictionary<Room.Direction, RoomNode> ConnectedRooms = new Dictionary<Room.Direction, RoomNode>();
+}
+
 public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
-    private GameObject currentRoom;
-    private GameObject nextRoom; // 预加载的下一个房间
+    private RoomNode rootNode;
+    private RoomNode currentRoomNode;
+    private Stack<RoomNode> roomHistory = new Stack<RoomNode>(); // 用于追踪房间历史
     private CinemachineVirtualCamera currentCamera;
-    private Stack<GameObject> roomHistory = new Stack<GameObject>(); // 房间历史
-    private HashSet<GameObject> usedRoomPrefabs = new HashSet<GameObject>(); // 已使用的房间预制体
 
     void Start()
     {
-        LoadInitialRooms();
+        BuildRoomTree();
+        LoadInitialRoom();
     }
 
-    void LoadInitialRooms()
+    void BuildRoomTree()
     {
-        // 实例化并激活第一个房间
-        GameObject firstRoom = Instantiate(roomPrefabs[0]);
-        usedRoomPrefabs.Add(roomPrefabs[0]);
-        roomHistory.Push(firstRoom);
-        currentRoom = firstRoom;
-        UpdateCamera(currentRoom);
+        // 假设 roomPrefabs 列表中有至少一个房间预制体
+        rootNode = new RoomNode { Room = Instantiate(roomPrefabs[0]) };
+        Queue<RoomNode> queue = new Queue<RoomNode>();
+        queue.Enqueue(rootNode);
 
-        // 预加载并激活第二个房间，但确保相机聚焦在第一个房间
-        PreloadNextRoom();
-    }
-
-    void PreloadNextRoom()
-    {
-        Room currentRoomScript = currentRoom.GetComponent<Room>();
-        Room.Direction exitDirection = currentRoomScript.exitDirection;
-        Room.Direction oppositeDirection = GetOppositeDirection(exitDirection);
-        GameObject secondRoomPrefab = SelectNextRoomPrefab(oppositeDirection);
-        if (secondRoomPrefab != null)
+        while (queue.Count > 0)
         {
-            nextRoom = Instantiate(secondRoomPrefab);
-            nextRoom.SetActive(true); // 立即激活第二个房间
-            usedRoomPrefabs.Add(secondRoomPrefab);
+            RoomNode current = queue.Dequeue();
+            Room currentRoomScript = current.Room.GetComponent<Room>();
+            Room.Direction exitDirection = currentRoomScript.exitDirection;
+
+            foreach (var prefab in roomPrefabs)
+            {
+                Room prefabRoomScript = prefab.GetComponent<Room>();
+                if (prefabRoomScript.entryDirection == GetOppositeDirection(exitDirection))
+                {
+                    RoomNode newNode = new RoomNode { Room = Instantiate(prefab) };
+                    current.ConnectedRooms.Add(exitDirection, newNode);
+                    queue.Enqueue(newNode);
+                    break;
+                }
+            }
         }
     }
 
-
-    public void LoadNextRoom()
+    void LoadInitialRoom()
     {
-        if (nextRoom != null)
+        currentRoomNode = rootNode;
+        UpdateCamera(currentRoomNode.Room);
+    }
+
+    public void LoadNextRoom(Room.Direction direction)
+    {
+        if (currentRoomNode != null && currentRoomNode.ConnectedRooms.ContainsKey(direction))
         {
-            nextRoom.SetActive(true); // 激活下一个房间
-            roomHistory.Push(currentRoom); // 将当前房间添加到历史
-            currentRoom = nextRoom;
-            nextRoom = null;
-            UpdateCamera(currentRoom);
-            PreloadNextRoom(); // 预加载下一个房间
+            RoomNode nextRoomNode = currentRoomNode.ConnectedRooms[direction];
+            if (nextRoomNode != null)
+            {
+                roomHistory.Push(currentRoomNode); // 将当前房间节点添加到历史记录
+                currentRoomNode = nextRoomNode;
+                UpdateCamera(currentRoomNode.Room);
+            }
         }
     }
 
@@ -78,58 +75,41 @@ public class RoomManager : MonoBehaviour
     {
         if (roomHistory.Count > 0)
         {
-            GameObject previousRoom = roomHistory.Pop(); // 获取上一个房间
-            currentRoom = previousRoom;
-            UpdateCamera(currentRoom);
+            currentRoomNode = roomHistory.Pop();
+            UpdateCamera(currentRoomNode.Room);
         }
     }
 
     void UpdateCamera(GameObject newRoom)
     {
         CinemachineVirtualCamera newCamera = newRoom.GetComponentInChildren<CinemachineVirtualCamera>();
-        if (newCamera != null)
+        if (newCamera != null && newCamera != currentCamera)
         {
-            if (currentCamera != null)
-            {
-                StartCoroutine(SmoothTransitionToNewCamera(newCamera));
-            }
-            else
-            {
-                currentCamera = newCamera;
-            }
+            StartCoroutine(SmoothTransitionToNewCamera(newCamera));
         }
     }
 
-    void UpdateRoomAndCamera(GameObject newRoom)
+    IEnumerator SmoothTransitionToNewCamera(CinemachineVirtualCamera newCamera)
     {
-        currentRoom = newRoom;
-        UpdateCamera(newRoom);
-    }
+        float transitionDuration = 1.0f; // 过渡时间，可以根据需要调整
 
-    GameObject SelectNextRoomPrefab(Room.Direction exitDirection)
-    {
-        List<GameObject> validRooms = new List<GameObject>();
-        foreach (var roomPrefab in roomPrefabs)
-        {
-            if (usedRoomPrefabs.Contains(roomPrefab))
-                continue; // 跳过已使用的房间
+        Vector3 startPosition = currentCamera.transform.position;
+        Quaternion startRotation = currentCamera.transform.rotation;
 
-            Room roomScript = roomPrefab.GetComponent<Room>();
-            if (roomScript.entryDirection == exitDirection)
-            {
-                validRooms.Add(roomPrefab);
-            }
-        }
+        Vector3 endPosition = newCamera.transform.position;
+        Quaternion endRotation = newCamera.transform.rotation;
 
-        if (validRooms.Count == 0)
-        {
-            Debug.LogError("No valid rooms found for the given exit direction.");
-            return null;
-        }
+        Tween moveTween = currentCamera.transform.DOMove(endPosition, transitionDuration).SetEase(Ease.InOutQuad);
+        Tween rotateTween = currentCamera.transform.DORotateQuaternion(endRotation, transitionDuration).SetEase(Ease.InOutQuad);
 
-        GameObject selectedRoom = validRooms[Random.Range(0, validRooms.Count)];
-        usedRoomPrefabs.Add(selectedRoom); // 将选中的房间添加到已使用集合
-        return selectedRoom;
+        yield return moveTween.WaitForCompletion();
+        yield return rotateTween.WaitForCompletion();
+
+        // 更新当前相机引用
+        currentCamera = newCamera;
+
+        // 确保新相机处于活跃状态
+        newCamera.gameObject.SetActive(true);
     }
 
     Room.Direction GetOppositeDirection(Room.Direction direction)
@@ -143,21 +123,4 @@ public class RoomManager : MonoBehaviour
             default: return direction;
         }
     }
-
-    IEnumerator SmoothTransitionToNewCamera(CinemachineVirtualCamera newCamera)
-    {
-        float transitionDuration = 1.0f; // 过渡时间，可以根据需要调整
-
-        Vector3 endPosition = newCamera.transform.position;
-        Quaternion endRotation = newCamera.transform.rotation;
-
-        Tween moveTween = currentCamera.transform.DOMove(endPosition, transitionDuration).SetEase(Ease.InOutQuad);
-        Tween rotateTween = currentCamera.transform.DORotateQuaternion(endRotation, transitionDuration).SetEase(Ease.InOutQuad);
-
-        yield return moveTween.WaitForCompletion();
-        yield return rotateTween.WaitForCompletion();
-
-        currentCamera = newCamera;
-    }
-
 }
