@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9314c3691450c1c4e95c2e7557342659
+guid: 0f3541fb85444c0429630e9628a9b4e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Haley_back_standing_0
+      name: Haley_back_standing 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5c7d9f8846f435409fa247905a90d3b
-      internalID: 1247349348
+      spriteID: cfada92e107035649a9dd3d2fa3b14fe
+      internalID: -1820857361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_back_standing_1
+      name: Haley_back_standing 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25c2204156088c049a70ad8a1b69aef2
-      internalID: 1228648851
+      spriteID: 45dcd9565c8ad634eb299c16096bef1b
+      internalID: 1441830919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_back_standing_2
+      name: Haley_back_standing 1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3643e34a6988b1c44af86f9c7b4b90ab
-      internalID: -1217576302
+      spriteID: 29a0871cd58e48c48be47488f6fbeed9
+      internalID: 1843631288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_back_standing_3
+      name: Haley_back_standing 1_3
       rect:
         serializedVersion: 2
         x: 96
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9691604d4d839741b2cc9981f04d84c
-      internalID: 1559576907
+      spriteID: 6f6f8c227a067434eb9bc809ed0802d9
+      internalID: 393017761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_back_standing_4
+      name: Haley_back_standing 1_4
       rect:
         serializedVersion: 2
         x: 128
@@ -202,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e6b079b005c6164693c50ab4941d653
-      internalID: 1801478962
+      spriteID: f00340a27587f2c47b455922caaf9ac8
+      internalID: 803526971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_back_standing_5
+      name: Haley_back_standing 1_5
       rect:
         serializedVersion: 2
         x: 160
@@ -223,8 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7c16fa2b46593d4ca8204862fa516a9
-      internalID: 1612209046
+      spriteID: abf0bd7d98e726e4e9b294bd814c1de9
+      internalID: -1617752395
       vertices: []
       indices: 
       edges: []
@@ -240,12 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Haley_back_standing_4: 1801478962
-      Haley_back_standing_0: 1247349348
-      Haley_back_standing_1: 1228648851
-      Haley_back_standing_2: -1217576302
-      Haley_back_standing_3: 1559576907
-      Haley_back_standing_5: 1612209046
+      Haley_back_standing 1_4: 803526971
+      Haley_back_standing 1_3: 393017761
+      Haley_back_standing 1_2: 1843631288
+      Haley_back_standing 1_1: 1441830919
+      Haley_back_standing 1_0: -1820857361
+      Haley_back_standing 1_5: -1617752395
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
