@@ -8,12 +8,10 @@ public class LevelMapBuilder : MonoBehaviour
     public GameObject[] roomPrefabs;
     public int minRooms;
     public int maxRooms;
-
-    private string[,] gameSpace = new string[100, 100]; // 游戏空间的二维数组
-    private Dictionary<string, GameObject> roomDictionary = new Dictionary<string, GameObject>(); // 房间名与地形的对应关系
-    private List<GameObject> mapRooms = new List<GameObject>(); // 存储地图上的房间
     private int totalRooms;
 
+    private string[,] gameSpace = new string[100, 100]; // 游戏空间的二维数组
+    
     void Start()
     {
         InitializeGameSpace();
@@ -37,8 +35,7 @@ public class LevelMapBuilder : MonoBehaviour
 
         // 添加开始房间
         GameObject startRoom = Instantiate(startRoomPrefab);
-        mapRooms.Add(startRoom);
-        PlaceRoomInGameSpace(startRoom, 50, 50, "A");
+
 
         // 添加中间房间
         for (int i = 1; i < totalRooms - 1; i++)
@@ -47,17 +44,9 @@ public class LevelMapBuilder : MonoBehaviour
         }
 
         // 添加结束房间
-        GameObject endRoom = Instantiate(endRoomPrefab);
-        mapRooms.Add(endRoom);
-        PlaceEndRoom(endRoom, totalRooms - 1);
+
     }
 
-    void PlaceRoomInGameSpace(GameObject room, int x, int y, string roomName)
-    {
-        // 在空间的二维数组中记录房间的占位
-        gameSpace[x, y] = roomName;
-        roomDictionary.Add(roomName, room);
-    }
 
     /// <summary>
     /// 1. 随机抽取一个房间
@@ -70,13 +59,14 @@ public class LevelMapBuilder : MonoBehaviour
     /// 虚拟对接 & 实际对接都要存在，先有虚拟对接，然后实际对接就是把虚拟对接的门的位置对准然后传送。
     /// 改为3x4的核心
     /// </summary>
-    /// <param name="roomIndex"></param>
+
     void AddRandomRoom(int roomIndex)
     {
-        // 随机抽取并添加房间的逻辑
-        // 确保房间不重复并且能够连接
+        GameObject randomRoom = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
+        int[,] grid = randomRoom.GetComponent<GridData>().grid;
+        
 
-        // 记录房间名
+
     }
 
     void PlaceEndRoom(GameObject endRoom, int roomIndex)
