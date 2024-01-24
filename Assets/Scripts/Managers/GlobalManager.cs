@@ -30,6 +30,7 @@ namespace YSFramework
                 gameObject.AddComponent<UIManager>();
                 gameObject.AddComponent<CommunicationManager>();
                 gameObject.AddComponent<SqlManager>();
+                gameObject.AddComponent<GameManager>();
                 DontDestroyOnLoad(this.gameObject);
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }
@@ -54,9 +55,17 @@ namespace YSFramework
             if (arg0.name.Equals("Main"))
             {
                 
-                GameObject go= (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
-                go.transform.position = Vector3.zero;
-                print(go);
+                //GameObject go= (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
+                //go.transform.position = Vector3.zero;
+                //print(go);
+            }
+            if (arg0.name.Equals("Menu"))
+            {
+
+                //GameObject go = (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
+                //EventCenter.Broadcast<UIPanelType, object>(EventCode.PushPanel, UIPanelType.Start, null);
+                //go.transform.position = Vector3.zero;
+                //print(go);
             }
         }
 

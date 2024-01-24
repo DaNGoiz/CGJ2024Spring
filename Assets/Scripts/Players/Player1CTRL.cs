@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public class Player1CTRL : MonoBehaviour
+public class Player1CTRL : PlayerCTRL
 {
     //with SF
     #region SF
@@ -210,5 +210,13 @@ public class Player1CTRL : MonoBehaviour
                 shootPoint.localPosition = new Vector2(shootPoint.localPosition.x, Math.Sign(facing.localPosition.y) * 2);
             }
         }
+
+
+        
+    }
+
+    public override void OnSwitchState(bool arg)
+    {
+        
     }
 }

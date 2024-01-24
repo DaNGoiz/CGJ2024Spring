@@ -29,6 +29,9 @@ namespace YSFramework
         /// 测试面板
         /// </summary>
         Test,
-        aaaa,
+        /// <summary>
+        /// 主菜单面板
+        /// </summary>
+        Start,
     }
 }
