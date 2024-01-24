@@ -20,17 +20,17 @@ public class ThrowingFlower : Plant
         //生成一个随机不重复名字作为计时器名
         do
             timerName = "ThrowingFlower" + Random.Range(0f, 100f);
-        while (!GlobalTimer.CreateTimer(timerName));
+        while (!TimerInstance.CreateTimer(timerName));
         SwitchMode(AttackMode.Auto);
         FaceTo(1, 0);
     }
     private void Update()
     {
         if (m_AttackMode == AttackMode.Auto)
-            if (GlobalTimer.GetTime(timerName) >= atkInterval)
+            if (TimerInstance.GetTime(timerName) >= atkInterval)
             {
                 Attack();
-                GlobalTimer.ResetTimer(timerName, startImmediately: true);
+                TimerInstance.ResetTimer(timerName, startImmediately: true);
             }
     }
 }

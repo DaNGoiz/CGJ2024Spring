@@ -14,7 +14,9 @@ namespace YSFramework
     public class GlobalManager : Sington<GlobalManager>
     {
         private static Timer timer;
-        public static Timer GlobalTimer { get { return timer; } }
+        public static Timer TimerInstance { get { return timer; } }
+        private static ObjectsPool objPool;
+        public static ObjectsPool ObjPool { get { return objPool; } }
         /// <summary>
         /// 在项目开始时完成所有管理类的生成和绑定，并确保在每个场景中只有一个GlobalManager类
         /// </summary>
@@ -30,10 +32,14 @@ namespace YSFramework
                 gameObject.AddComponent<UIManager>();
                 gameObject.AddComponent<CommunicationManager>();
                 gameObject.AddComponent<SqlManager>();
+                gameObject.AddComponent<Timer>();
+                gameObject.AddComponent<ObjectsPool>();
+                gameObject.AddComponent<TestScript>();
                 DontDestroyOnLoad(this.gameObject);
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }
             timer = GetComponent<Timer>();
+            objPool = GetComponent<ObjectsPool>();
             base.Awake();
         }
 

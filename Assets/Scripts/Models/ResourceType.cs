@@ -33,5 +33,9 @@
         /// 释放孢子的花和蘑菇
         /// </summary>
         Plant,
+        /// <summary>
+        /// 孢子和毒雾等投射物
+        /// </summary>
+        Projectile,
     }
 }

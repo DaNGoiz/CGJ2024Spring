@@ -14,21 +14,21 @@ public class Mushroom : Plant
         //生成一个随机不重复名字作为计时器名
         do
             timerName = "Mushroom" + Random.Range(0f, 100f);
-        while (!GlobalTimer.CreateTimer(timerName));
+        while (!TimerInstance.CreateTimer(timerName));
         SwitchMode(AttackMode.Trigger);
         FaceTo(1, 0, false);
     }
     private void Update()
     {
-        if(GlobalTimer.GetTime(timerName) >= atkCooldown)
-            GlobalTimer.ResetTimer(timerName);
+        if(TimerInstance.GetTime(timerName) >= atkCooldown)
+            TimerInstance.ResetTimer(timerName);
     }
     public void TriggerAttack()
     {
-        UnityEngine.Debug.Log(GlobalTimer.GetTime(timerName));
-        if(GlobalTimer.GetTime(timerName) == 0)
+        UnityEngine.Debug.Log(TimerInstance.GetTime(timerName));
+        if(TimerInstance.GetTime(timerName) == 0)
         {
-            GlobalTimer.StartTimer(timerName);
+            TimerInstance.StartTimer(timerName);
             Attack();
         }    
     }

@@ -1,0 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public struct PrefabName
+{
+    public const string ToxicFumes_Thick = "ToxicFumes_Thick";
+    public const string ToxicFumes_Thin0 = "ToxicFumes_Thin0";
+    public const string ToxicFumes_Thin1 = "ToxicFumes_Thin1";
+}

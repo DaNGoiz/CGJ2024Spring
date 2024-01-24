@@ -41,11 +41,11 @@ public class Plant : MonoBehaviour
         {
             case AttackMode.Auto:
                 m_AttackMode = AttackMode.Auto;
-                GlobalTimer.StartTimer(timerName, reset: true);
+                TimerInstance.StartTimer(timerName, reset: true);
                 break;
             case AttackMode.Trigger:
                 m_AttackMode = AttackMode.Trigger;
-                GlobalTimer.ResetTimer(timerName);
+                TimerInstance.ResetTimer(timerName);
                 break;
         }
     }
@@ -66,16 +66,28 @@ public class Plant : MonoBehaviour
         }
     }
     //днЪБ
-    protected void Attack()
+    protected virtual void Attack()
     {
         m_animator.SetTrigger("Attack");
     }
-    protected void Attack(Projectile proj, Vector2 dir)
+    protected virtual void Attack(GameObject projPrefab, Vector2 dir)
     {
+        GameObject projObj = ObjPool.RequestObject(projPrefab);
+        if (projObj != null)
+        {
+            if (projObj.TryGetComponent(out Projectile proj))
+            {
+                proj.Launch(transform.position, dir, transform.rotation, 1f);
+            }
+            else
+                Debug.LogError("Object doesn't own \"Projectile\" component");
+        }
+        else
+            Debug.LogWarning("projectile is null");
         m_animator.SetTrigger("Attack");
     }
     protected void OnObjectDestroy()
     {
-        GlobalTimer.DestroyTimer(timerName);
+        TimerInstance.DestroyTimer(timerName);
     }
 }
