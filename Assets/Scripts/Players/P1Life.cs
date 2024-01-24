@@ -10,7 +10,7 @@ public class P1Life : MonoBehaviour
     
     //NoSF
     private bool unDead;
-    static public int lifeP1;
+    static public int lifeP1;//UI要用
 
     public void Damage(int value)
     {
@@ -36,7 +36,7 @@ public class P1Life : MonoBehaviour
         {
             unDead = false;
         }
-        if (unDead)
+        if (unDead||life>10)
         {
             life = 10;
         }

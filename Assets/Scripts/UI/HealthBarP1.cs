@@ -23,11 +23,11 @@ public class HealthBarP1 : MonoBehaviour
         HealthCTRL();
     }
 
-/// <summary>
-/// 用栈来实现血量的逐个扣减
-/// 如果扣血，则出栈并把出栈元素的图片改成空血槽
-/// 如果加血，则将空血槽的图片改成满血槽并入栈
-/// </summary>
+    /// <summary>
+    /// 用栈来实现血量的逐个扣减
+    /// 如果扣血，则出栈并把出栈元素的图片改成空血槽
+    /// 如果加血，则将空血槽的图片改成满血槽并入栈
+    /// </summary>
     void HealthCTRL()
     {
         while (P1Life.lifeP1 < healthBar.Count)//扣血
@@ -42,6 +42,7 @@ public class HealthBarP1 : MonoBehaviour
             Transform fullHP = transform.GetChild(currHP);
             UnityEngine.UI.Image fullImg = fullHP.GetComponent<UnityEngine.UI.Image>();
             fullImg.sprite = Resources.Load<Sprite>("Images/UI/P1Health");
+            healthBar.Push(fullHP);
         }
     }
 }
