@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
         if (nextRoomLeftDoor != null) nextRoomLeftDoor.SetActive(right);
     }
 
-     public GameObject GetCorrespondingDoorInNextRoom(Door.Direction currentDoorDirection)
+    public GameObject GetCorrespondingDoorInNextRoom(Door.Direction currentDoorDirection)
     {
         // 根据当前门的方向，返回下一个房间对应方向的门
         switch (currentDoorDirection)
@@ -34,6 +34,42 @@ public class Room : MonoBehaviour
                 return nextRoomLeftDoor;
             default:
                 return null;
+        }
+    }
+
+    public bool HasDoor(Door.Direction direction)
+    {
+        switch (direction)
+        {
+            case Door.Direction.Up:
+                return down;
+            case Door.Direction.Down:
+                return up;
+            case Door.Direction.Left:
+                return right;
+            case Door.Direction.Right:
+                return left;
+            default:
+                return false;
+        }
+    }
+
+    public void BindDoor(Door.Direction direction, GameObject door)
+    {
+        switch (direction)
+        {
+            case Door.Direction.Up:
+                nextRoomDownDoor = door;
+                break;
+            case Door.Direction.Down:
+                nextRoomUpDoor = door;
+                break;
+            case Door.Direction.Left:
+                nextRoomRightDoor = door;
+                break;
+            case Door.Direction.Right:
+                nextRoomLeftDoor = door;
+                break;
         }
     }
 }

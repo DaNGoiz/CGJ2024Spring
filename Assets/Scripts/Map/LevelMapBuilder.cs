@@ -20,7 +20,7 @@ public class LevelMapBuilder : MonoBehaviour
     public void OnDoorTriggered(GameObject door)
     {
         Room currentRoomScript = currentRoom.GetComponent<Room>();
-        GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(currentDoorScript.doorDirection);
+        GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
         // 如果没有生成过下一个房间，就生成下一个房间
         if (nextRoomDoor == null)
@@ -33,11 +33,29 @@ public class LevelMapBuilder : MonoBehaviour
 
     GameObject SelectNextRoom(Door.Direction currentDoorDirection)
     {
-        // 选择下一个房间
-        // 绑定下一个房间的门
-        // 返回下一个门
+        GameObject nextRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
 
-        return null; // 示例
+        Room currentRoomScript = currentRoom.GetComponent<Room>();
+        Room nextRoomScript = nextRoom.GetComponent<Room>();
+        
+        if (nextRoomScript.HasDoor(currentDoorDirection))
+        {
+            nextRoom = Instantiate(nextRoom);
+            nextRoom.SetActive(true);
+            
+            Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
+            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoorInNextRoom(nextDoorDirection);
+            
+            currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
+
+            currentRoom = nextRoom;
+            return nextRoom;
+        }
+        else
+        {
+            // 如果没有门，就重新选择下一个房间
+            return SelectNextRoom(currentDoorDirection);
+        }
     }
 
     void MovePlayerToRoom(GameObject door)
@@ -45,7 +63,6 @@ public class LevelMapBuilder : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
-            // 移动玩家到下一个房间的入口
             player.transform.position = door.transform.position;
         }
 
