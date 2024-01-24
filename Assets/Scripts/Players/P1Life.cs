@@ -12,7 +12,7 @@ public class P1Life : MonoBehaviour
     private bool unDead;
     static public int lifeP1;//UI要用
 
-    public void Damage(int value)
+    static public void Damage(int value)
     {
         lifeP1 -= value;
         if(lifeP1<0)
