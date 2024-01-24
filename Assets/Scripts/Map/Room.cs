@@ -21,7 +21,6 @@ public class Room : MonoBehaviour
 
     public GameObject GetCorrespondingDoorInNextRoom(Door.Direction currentDoorDirection)
     {
-        // 根据当前门的方向，返回下一个房间对应方向的门
         switch (currentDoorDirection)
         {
             case Door.Direction.Up:
@@ -32,6 +31,23 @@ public class Room : MonoBehaviour
                 return nextRoomRightDoor;
             case Door.Direction.Right:
                 return nextRoomLeftDoor;
+            default:
+                return null;
+        }
+    }
+
+    public GameObject GetCorrespondingDoor(Door.Direction currentDoorDirection)
+    {
+        switch (currentDoorDirection)
+        {
+            case Door.Direction.Up:
+                return currentUpDoor;
+            case Door.Direction.Down:
+                return currentDownDoor;
+            case Door.Direction.Left:
+                return currentLeftDoor;
+            case Door.Direction.Right:
+                return currentRightDoor;
             default:
                 return null;
         }
@@ -59,6 +75,7 @@ public class Room : MonoBehaviour
         switch (direction)
         {
             case Door.Direction.Up:
+                print("Bind Up Door");
                 nextRoomDownDoor = door;
                 break;
             case Door.Direction.Down:

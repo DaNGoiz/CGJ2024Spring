@@ -7,6 +7,9 @@ public class LevelMapBuilder : MonoBehaviour
     public GameObject lastRoom;
     public List<GameObject> roomPrefabs;
 
+    [Header("Transform")]
+    public float transformPosition = 2f;
+
     private GameObject currentRoom;
 
 
@@ -22,7 +25,6 @@ public class LevelMapBuilder : MonoBehaviour
         Room currentRoomScript = currentRoom.GetComponent<Room>();
         GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
-        // 如果没有生成过下一个房间，就生成下一个房间
         if (nextRoomDoor == null)
         {
             nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection);
@@ -44,16 +46,14 @@ public class LevelMapBuilder : MonoBehaviour
             nextRoom.SetActive(true);
             
             Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
-            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoorInNextRoom(nextDoorDirection);
-            
+            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
             currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
 
             currentRoom = nextRoom;
-            return nextRoom;
+            return nextRoomDoor;
         }
         else
         {
-            // 如果没有门，就重新选择下一个房间
             return SelectNextRoom(currentDoorDirection);
         }
     }
@@ -63,8 +63,26 @@ public class LevelMapBuilder : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
-            player.transform.position = door.transform.position;
+            if (door.GetComponent<Door>().doorDirection == Door.Direction.Up)
+            {
+                player.transform.position = door.transform.position + new Vector3(0, transformPosition, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Down)
+            {
+                player.transform.position = door.transform.position + new Vector3(0, -transformPosition, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Left)
+            {
+                player.transform.position = door.transform.position + new Vector3(-transformPosition, 0, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Right)
+            {
+                player.transform.position = door.transform.position + new Vector3(transformPosition, 0, 0);
+            }
+            else
+            {
+                player.transform.position = door.transform.position;
+            }
         }
-
     }
 }

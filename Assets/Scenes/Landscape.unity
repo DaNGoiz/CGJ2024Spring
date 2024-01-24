@@ -224,9 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a7e77fb0af1ec448ecd56463375d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialRoom: {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
+  initialRoom: {fileID: 8855580407216847280, guid: 891d2f3dcf225004b8f93f25b4b16ab1, type: 3}
   lastRoom: {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
   roomPrefabs:
   - {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
-  - {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
-  - {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
+  transformPosition: 2
