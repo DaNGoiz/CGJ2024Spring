@@ -1723,6 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697407868}
   - component: {fileID: 697407869}
+  - component: {fileID: 697407870}
   m_Layer: 10
   m_Name: Player2
   m_TagString: Untagged
@@ -1761,6 +1762,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &697407870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697407866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8ac7a994dabcc47ab4548429474d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 0
 --- !u!1 &751692864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,6 +2621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1158291329}
+  - component: {fileID: 1158291330}
   m_Layer: 5
   m_Name: P2HP
   m_TagString: Untagged
@@ -2644,6 +2659,18 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 165}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1158291330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158291328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e907789b70d246c47aec6252025b8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1179429580
 GameObject:
   m_ObjectHideFlags: 0
