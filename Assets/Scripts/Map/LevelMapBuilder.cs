@@ -9,6 +9,7 @@ public class LevelMapBuilder : MonoBehaviour
 
     [Header("Transform")]
     public float transformPosition = 2f;
+    public float roomTransformDistance = 10f;
 
     private GameObject currentRoom;
 
@@ -25,7 +26,6 @@ public class LevelMapBuilder : MonoBehaviour
         Room currentRoomScript = currentRoom.GetComponent<Room>();
         GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
-        
         if (nextRoomDoor == null)
         {
             nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection, door);
@@ -47,7 +47,8 @@ public class LevelMapBuilder : MonoBehaviour
         
         if (nextRoomScript.HasDoor(currentDoorDirection))
         {
-            nextRoom = Instantiate(nextRoom);
+            // nextRoom = Instantiate(nextRoom);
+            nextRoom = InstantiateAtDirection(currentRoom, currentDoorDirection, nextRoom);
             nextRoom.SetActive(true);
 
             nextRoomScript = nextRoom.GetComponent<Room>();
@@ -64,6 +65,34 @@ public class LevelMapBuilder : MonoBehaviour
         {
             return SelectNextRoom(currentDoorDirection, door);
         }
+    }
+
+    public GameObject InstantiateAtDirection(GameObject currentRoom, Door.Direction direction, GameObject objectToInstantiate)
+    {
+        // 获取当前房间的位置
+        Vector3 roomPosition = currentRoom.transform.position;
+        Vector3 instantiatePosition = roomPosition;
+
+        // 根据方向计算实例化位置
+        switch (direction)
+        {
+            case Door.Direction.Up:
+                instantiatePosition += new Vector3(0, roomTransformDistance, 0);
+                break;
+            case Door.Direction.Down:
+                instantiatePosition += new Vector3(0, -roomTransformDistance, 0);
+                break;
+            case Door.Direction.Left:
+                instantiatePosition += new Vector3(-roomTransformDistance, 0, 0);
+                break;
+            case Door.Direction.Right:
+                instantiatePosition += new Vector3(roomTransformDistance, 0, 0);
+                break;
+        }
+
+        // 实例化对象并返回
+        GameObject instantiatedObject = Instantiate(objectToInstantiate, instantiatePosition, Quaternion.identity);
+        return instantiatedObject;
     }
 
     void MovePlayerToRoom(GameObject door)
