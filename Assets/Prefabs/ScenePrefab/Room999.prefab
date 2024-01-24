@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779112905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.994, y: -0.299, z: 0}
+  m_LocalPosition: {x: -17.55, y: -0.299, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDirection: 0
+  doorDirection: 2
 --- !u!1 &2059180174
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059180174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -8.27, z: 0}
+  m_LocalPosition: {x: 0.08, y: -9.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDirection: 0
+  doorDirection: 1
 --- !u!1 &2140946546
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140946546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.136, y: -0.39, z: 0}
+  m_LocalPosition: {x: 17.75, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDirection: 0
+  doorDirection: 3
 --- !u!1 &6101970469813773871
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6101970469813773871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 7.52, z: 0}
+  m_LocalPosition: {x: 0.08, y: 8.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

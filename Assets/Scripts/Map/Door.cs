@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log(doorDirection + " Door Triggered");
+            // Debug.Log(doorDirection + " Door Triggered");
             LevelMapBuilder levelMapBuilder = GameObject.Find("RoomManager").GetComponent<LevelMapBuilder>();
             levelMapBuilder.OnDoorTriggered(gameObject);
         }

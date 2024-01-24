@@ -75,7 +75,6 @@ public class Room : MonoBehaviour
         switch (direction)
         {
             case Door.Direction.Up:
-                print("Bind Up Door");
                 nextRoomDownDoor = door;
                 break;
             case Door.Direction.Down:
