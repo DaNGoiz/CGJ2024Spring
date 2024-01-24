@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Map/Door.cs.meta
+guid: 3138764047b1fc54d99fe78e33fe96e4
+========
+guid: 97e8f163c3f02884cb5d17dc332aa977
+>>>>>>>> PlayerAndEnemy:Assets/Scripts/Players/BtnP1Add10.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Facing
+    uniqueID: 4148886683
+    locked: 0
+  - name: ShootPt
+    uniqueID: 1705543187
+    locked: 0
+  - name: Player
+    uniqueID: 660160457
     locked: 0
