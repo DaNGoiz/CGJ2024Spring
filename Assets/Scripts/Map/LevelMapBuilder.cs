@@ -3,75 +3,123 @@ using System.Collections.Generic;
 
 public class LevelMapBuilder : MonoBehaviour
 {
-    public GameObject startRoomPrefab;
-    public GameObject endRoomPrefab;
-    public GameObject[] roomPrefabs;
-    public int minRooms;
-    public int maxRooms;
-    private int totalRooms;
+    public GameObject initialRoom;
+    public GameObject lastRoom;
+    public List<GameObject> roomPrefabs;
 
-    private string[,] gameSpace = new string[100, 100]; // 游戏空间的二维数组
-    
+    [Header("Transform")]
+    public float transformPosition = 2f;
+    public float roomTransformDistance = 10f;
+
+    private GameObject currentRoom;
+
+
     void Start()
     {
-        InitializeGameSpace();
-        BuildMap();
+        GameObject firstRoom = Instantiate(initialRoom);
+        currentRoom = firstRoom;
+        currentRoom.SetActive(true);
     }
 
-    void InitializeGameSpace()
+    public void OnDoorTriggered(GameObject door)
     {
-        for (int i = 0; i < gameSpace.GetLength(0); i++)
+        Room currentRoomScript = currentRoom.GetComponent<Room>();
+        GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
+
+        if (nextRoomDoor == null)
         {
-            for (int j = 0; j < gameSpace.GetLength(1); j++)
+            nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection, door);
+        }
+        else
+        {
+            print(nextRoomDoor.name);
+        }
+
+        MovePlayerToRoom(nextRoomDoor);
+    }
+
+    GameObject SelectNextRoom(Door.Direction currentDoorDirection, GameObject door)
+    {
+        GameObject nextRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+
+        Room currentRoomScript = currentRoom.GetComponent<Room>();
+        Room nextRoomScript = nextRoom.GetComponent<Room>();
+        
+        if (nextRoomScript.HasDoor(currentDoorDirection))
+        {
+            // nextRoom = Instantiate(nextRoom);
+            nextRoom = InstantiateAtDirection(currentRoom, currentDoorDirection, nextRoom);
+            nextRoom.SetActive(true);
+
+            nextRoomScript = nextRoom.GetComponent<Room>();
+            
+            Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
+            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
+            currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
+            nextRoomScript.BindDoor(nextDoorDirection, door);
+
+            currentRoom = nextRoom;
+            return nextRoomDoor;
+        }
+        else
+        {
+            return SelectNextRoom(currentDoorDirection, door);
+        }
+    }
+
+    public GameObject InstantiateAtDirection(GameObject currentRoom, Door.Direction direction, GameObject objectToInstantiate)
+    {
+        // 获取当前房间的位置
+        Vector3 roomPosition = currentRoom.transform.position;
+        Vector3 instantiatePosition = roomPosition;
+
+        // 根据方向计算实例化位置
+        switch (direction)
+        {
+            case Door.Direction.Up:
+                instantiatePosition += new Vector3(0, roomTransformDistance, 0);
+                break;
+            case Door.Direction.Down:
+                instantiatePosition += new Vector3(0, -roomTransformDistance, 0);
+                break;
+            case Door.Direction.Left:
+                instantiatePosition += new Vector3(-roomTransformDistance, 0, 0);
+                break;
+            case Door.Direction.Right:
+                instantiatePosition += new Vector3(roomTransformDistance, 0, 0);
+                break;
+        }
+
+        // 实例化对象并返回
+        GameObject instantiatedObject = Instantiate(objectToInstantiate, instantiatePosition, Quaternion.identity);
+        return instantiatedObject;
+    }
+
+    void MovePlayerToRoom(GameObject door)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (door.GetComponent<Door>().doorDirection == Door.Direction.Up)
             {
-                gameSpace[i, j] = "0";
+                player.transform.position = door.transform.position + new Vector3(0, -transformPosition, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Down)
+            {
+                player.transform.position = door.transform.position + new Vector3(0, transformPosition, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Left)
+            {
+                player.transform.position = door.transform.position + new Vector3(transformPosition, 0, 0);
+            }
+            else if (door.GetComponent<Door>().doorDirection == Door.Direction.Right)
+            {
+                player.transform.position = door.transform.position + new Vector3(-transformPosition, 0, 0);
+            }
+            else
+            {
+                player.transform.position = door.transform.position;
             }
         }
-    }
-
-    void BuildMap()
-    {
-        totalRooms = Random.Range(minRooms, maxRooms + 1);
-
-        // 添加开始房间
-        GameObject startRoom = Instantiate(startRoomPrefab);
-
-
-        // 添加中间房间
-        for (int i = 1; i < totalRooms - 1; i++)
-        {
-            AddRandomRoom(i);
-        }
-
-        // 添加结束房间
-
-    }
-
-
-    /// <summary>
-    /// 1. 随机抽取一个房间
-    /// 2. 检测房间在指定方向是否存在门
-    /// 3. 把两个门的位置对准，随后检测房间放在坐标里是否与其他房间重叠
-    /// 4. 连接其他方向上可能两两相对的门
-    /// 
-    /// 确认以后就给房间之间绑定门
-    /// 
-    /// 虚拟对接 & 实际对接都要存在，先有虚拟对接，然后实际对接就是把虚拟对接的门的位置对准然后传送。
-    /// 改为3x4的核心
-    /// </summary>
-
-    void AddRandomRoom(int roomIndex)
-    {
-        GameObject randomRoom = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
-        int[,] grid = randomRoom.GetComponent<GridData>().grid;
-        
-
-
-    }
-
-    void PlaceEndRoom(GameObject endRoom, int roomIndex)
-    {
-        // 放置结束房间的逻辑
-        // 确保选择一个合适的位置
     }
 }
