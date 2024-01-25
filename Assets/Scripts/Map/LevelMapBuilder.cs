@@ -17,6 +17,13 @@ public class LevelMapBuilder : MonoBehaviour
     void Start()
     {
         GameObject firstRoom = Instantiate(initialRoom);
+        GameObject roomsParent = GameObject.Find("Rooms");
+        if (roomsParent == null)
+        {
+            roomsParent = new GameObject("Rooms");
+        }
+        firstRoom.transform.SetParent(roomsParent.transform);
+
         currentRoom = firstRoom;
         currentRoom.SetActive(true);
     }
@@ -69,11 +76,9 @@ public class LevelMapBuilder : MonoBehaviour
 
     public GameObject InstantiateAtDirection(GameObject currentRoom, Door.Direction direction, GameObject objectToInstantiate)
     {
-        // 获取当前房间的位置
         Vector3 roomPosition = currentRoom.transform.position;
         Vector3 instantiatePosition = roomPosition;
 
-        // 根据方向计算实例化位置
         switch (direction)
         {
             case Door.Direction.Up:
@@ -90,8 +95,15 @@ public class LevelMapBuilder : MonoBehaviour
                 break;
         }
 
-        // 实例化对象并返回
         GameObject instantiatedObject = Instantiate(objectToInstantiate, instantiatePosition, Quaternion.identity);
+
+        GameObject roomsParent = GameObject.Find("Rooms");
+        if (roomsParent == null)
+        {
+            roomsParent = new GameObject("Rooms");
+        }
+
+        instantiatedObject.transform.SetParent(roomsParent.transform);
         return instantiatedObject;
     }
 
@@ -121,5 +133,13 @@ public class LevelMapBuilder : MonoBehaviour
                 player.transform.position = door.transform.position;
             }
         }
+    }
+
+    public void RemoveDoorAndAddWall(Door.Direction direction)
+    {
+        // 1. remove door component + grid
+        // 2. activate wall
+        // in level map builder
+
     }
 }
