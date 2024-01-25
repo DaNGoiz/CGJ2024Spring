@@ -70,24 +70,26 @@ public class Plant : MonoBehaviour
     {
         m_animator.SetTrigger("Attack");
     }
-    protected virtual void Attack(GameObject projPrefab, Vector2 dir)
+    /// <returns></returns>
+    protected virtual GameObject Attack(GameObject projPrefab, Vector2 dir, Vector2 rotation, float speed)
     {
         GameObject projObj = ObjPool.RequestObject(projPrefab);
         if (projObj != null)
         {
             if (projObj.TryGetComponent(out Projectile proj))
             {
-                proj.Launch(transform.position, dir, transform.rotation, 1f);
+                proj.Launch(transform.position, dir, rotation, speed);
             }
             else
                 Debug.LogError("Object doesn't own \"Projectile\" component");
         }
         else
-            Debug.LogWarning("projectile is null");
+            Debug.LogError("projectile is null");
         m_animator.SetTrigger("Attack");
+        return projObj;
     }
     protected void OnObjectDestroy()
     {
-        TimerInstance.DestroyTimer(timerName);
+        TimerInstance.RemoveTimer(timerName);
     }
 }

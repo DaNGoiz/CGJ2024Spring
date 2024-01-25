@@ -60,6 +60,11 @@ public class ObjectsPool : MonoBehaviour
     /// <returns>预制体对应的对象</returns>
     public GameObject RequestObject(GameObject prefab)
     {
+        if (prefab == null)
+        {
+            Debug.LogError("Prefab is null");
+            return null;
+        }
         string tag = prefab.GetInstanceID().ToString();
         GameObject go;
         if (pool.ContainsKey(tag))

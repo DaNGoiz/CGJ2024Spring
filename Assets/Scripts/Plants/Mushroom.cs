@@ -14,7 +14,7 @@ public class Mushroom : Plant
         //生成一个随机不重复名字作为计时器名
         do
             timerName = "Mushroom" + Random.Range(0f, 100f);
-        while (!TimerInstance.CreateTimer(timerName));
+        while (!TimerInstance.CreateCommonTimer(timerName));
         SwitchMode(AttackMode.Trigger);
         FaceTo(1, 0, false);
     }
@@ -25,7 +25,6 @@ public class Mushroom : Plant
     }
     public void TriggerAttack()
     {
-        UnityEngine.Debug.Log(TimerInstance.GetTime(timerName));
         if(TimerInstance.GetTime(timerName) == 0)
         {
             TimerInstance.StartTimer(timerName);

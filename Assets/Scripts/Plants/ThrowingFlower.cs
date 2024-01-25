@@ -20,7 +20,7 @@ public class ThrowingFlower : Plant
         //生成一个随机不重复名字作为计时器名
         do
             timerName = "ThrowingFlower" + Random.Range(0f, 100f);
-        while (!TimerInstance.CreateTimer(timerName));
+        while (!TimerInstance.CreateCommonTimer(timerName));
         SwitchMode(AttackMode.Auto);
         FaceTo(1, 0);
     }
