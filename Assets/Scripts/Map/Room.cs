@@ -71,23 +71,6 @@ public class Room : MonoBehaviour
         }
     }
 
-    public bool HasDoor(Door.Direction direction)
-    {
-        switch (direction)
-        {
-            case Door.Direction.Up:
-                return down;
-            case Door.Direction.Down:
-                return up;
-            case Door.Direction.Left:
-                return right;
-            case Door.Direction.Right:
-                return left;
-            default:
-                return false;
-        }
-    }
-
     /// <summary>
     /// This room door direction + next room door
     /// </summary>

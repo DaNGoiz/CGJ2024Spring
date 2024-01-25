@@ -34,47 +34,53 @@ public class LevelMapBuilder : MonoBehaviour
 
         roomArray[25, 25] = currentRoom;
     }
-
+    /// <summary>
+    /// 1. 检查当前方向是否已经绑定了下一个门
+    /// 2. 如果没有绑定，随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
+    /// 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
+    /// 4. 跳转到新房间，检查在四个方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
+    /// 5. 把玩家传送到新房间
+    /// </summary>
     public void OnDoorTriggered(GameObject door)
     {
+        // 1. 检查当前方向是否已经绑定了下一个门
         Room currentRoomScript = currentRoom.GetComponent<Room>();
         GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
-        if (nextRoomDoor == null)
+        if(nextRoomDoor == null)
         {
+            // 2. 如果没有绑定，随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
+            // 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
             nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection, door);
-        }
-        else
-        {
             print(nextRoomDoor.name);
+            // 4. 跳转到新房间，检查在四个方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
+            CheckRoomDoorsBinding(currentRoom);
         }
 
+        // 5. 把玩家传送到新房间
         MovePlayerToRoom(nextRoomDoor);
     }
 
+    // return nextRoomDoor
     GameObject SelectNextRoom(Door.Direction currentDoorDirection, GameObject door)
     {
+        // 2. 随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
+        // 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
         GameObject nextRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-
-        Room currentRoomScript = currentRoom.GetComponent<Room>();
         Room nextRoomScript = nextRoom.GetComponent<Room>();
-
-        bool isAdded = TryAddRoomToArray(nextRoom, currentDoorDirection);
-        
-        if (nextRoomScript.HasDoor(currentDoorDirection) && isAdded)
+        if(nextRoomScript.GetCorrespondingDoor
+            (Door.GetOppositeDirection(currentDoorDirection))
+            != null)
         {
-            // nextRoom = Instantiate(nextRoom);
             nextRoom = InstantiateAtDirection(currentRoom, currentDoorDirection, nextRoom);
             nextRoom.SetActive(true);
-
-            CheckRoomDoorsBinding(currentRoom);
-            
-            nextRoomScript = nextRoom.GetComponent<Room>();
-            Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
-            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
-            
+            bool isAdded = TryAddRoomToArray(nextRoom, currentDoorDirection);
+            if(!isAdded)
+            {
+                Debug.Log("Warning: Room already exists, but new room still added");
+            }
             currentRoom = nextRoom;
-            return nextRoomDoor;
+            return nextRoomScript.GetCorrespondingDoor(Door.GetOppositeDirection(currentDoorDirection));
         }
         else
         {
@@ -86,22 +92,10 @@ public class LevelMapBuilder : MonoBehaviour
     {
         int x = currentRoomX;
         int y = currentRoomY;
-        if (direction == Door.Direction.Up)
-        {
-            x -= 1;
-        }
-        else if (direction == Door.Direction.Down)
-        {
-            x += 1;
-        }
-        else if (direction == Door.Direction.Left)
-        {
-            y -= 1;
-        }
-        else if (direction == Door.Direction.Right)
-        {
-            y += 1;
-        }
+        if (direction == Door.Direction.Up){x -= 1;}
+        else if (direction == Door.Direction.Down){x += 1;}
+        else if (direction == Door.Direction.Left){y -= 1;}
+        else if (direction == Door.Direction.Right){y += 1;}
 
         if(roomArray[x, y] == null)
         {
@@ -110,14 +104,12 @@ public class LevelMapBuilder : MonoBehaviour
             roomArray[currentRoomX, currentRoomY] = room;
             return true;
         }
-        else
-        {
-            return false;
-        }
+        else{return false;}
     }
 
     void CheckRoomDoorsBinding(GameObject room)
     {
+        //4. 检查在四个方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
         CheckSingleDoorBinding(Door.Direction.Up, room);
         CheckSingleDoorBinding(Door.Direction.Down, room);
         CheckSingleDoorBinding(Door.Direction.Left, room);
@@ -126,17 +118,22 @@ public class LevelMapBuilder : MonoBehaviour
 
     void CheckSingleDoorBinding(Door.Direction currentDoorDirection, GameObject room)
     {
-        Room currentRoomScript = room.GetComponent<Room>();
-        if (currentRoomScript.HasDoor(currentDoorDirection))
+        //4. 检查当前方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
+        GameObject nextRoom = GetRoomInDirection(currentDoorDirection);
+        if(nextRoom != null)
         {
-            GameObject nextRoom = GetRoomInDirection(currentDoorDirection);
-            if (nextRoom != null)
+            Room currentRoomScript = room.GetComponent<Room>();
+            Room nextRoomScript = nextRoom.GetComponent<Room>();
+
+            Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
+
+            GameObject currentRoomDoor = currentRoomScript.GetCorrespondingDoor(currentDoorDirection);
+            GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
+
+            if(currentRoomDoor != null && nextRoomDoor != null)
             {
-                Room nextRoomScript = nextRoom.GetComponent<Room>();
-                Door.Direction nextDoorDirection = Door.GetOppositeDirection(currentDoorDirection);
-                GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
                 currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
-                nextRoomScript.BindDoor(nextDoorDirection, currentRoomScript.GetCorrespondingDoor(currentDoorDirection));
+                nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
             }
             else
             {
@@ -151,68 +148,16 @@ public class LevelMapBuilder : MonoBehaviour
         int x = currentRoomX;
         int y = currentRoomY;
         
-        if (direction == Door.Direction.Up)
-        {
-            x -= 1;
-        }
-        else if (direction == Door.Direction.Down)
-        {
-            x += 1;
-        }
-        else if (direction == Door.Direction.Left)
-        {
-            y -= 1;
-        }
-        else if (direction == Door.Direction.Right)
-        {
-            y += 1;
-        }
+        if (direction == Door.Direction.Up){x -= 1;}
+        else if (direction == Door.Direction.Down){x += 1;}
+        else if (direction == Door.Direction.Left){y -= 1;}
+        else if (direction == Door.Direction.Right){y += 1;}
 
         room = roomArray[x, y];
         return room;
     }
 
-    void CheckOppositeRoomDoorBinding(Door.Direction direction, GameObject room, GameObject doorOfOtherSide)
-    {
-        Room roomScript = room.GetComponent<Room>();
-        if (roomScript.HasDoor(direction))
-        {
-            roomScript.BindDoor(Door.GetOppositeDirection(direction), doorOfOtherSide);
-        }
-    }
-
-    public GameObject InstantiateAtDirection(GameObject currentRoom, Door.Direction direction, GameObject objectToInstantiate)
-    {
-        Vector3 roomPosition = currentRoom.transform.position;
-        Vector3 instantiatePosition = roomPosition;
-
-        switch (direction)
-        {
-            case Door.Direction.Up:
-                instantiatePosition += new Vector3(0, roomTransformDistance, 0);
-                break;
-            case Door.Direction.Down:
-                instantiatePosition += new Vector3(0, -roomTransformDistance, 0);
-                break;
-            case Door.Direction.Left:
-                instantiatePosition += new Vector3(-roomTransformDistance, 0, 0);
-                break;
-            case Door.Direction.Right:
-                instantiatePosition += new Vector3(roomTransformDistance, 0, 0);
-                break;
-        }
-
-        GameObject instantiatedObject = Instantiate(objectToInstantiate, instantiatePosition, Quaternion.identity);
-
-        GameObject roomsParent = GameObject.Find("Rooms");
-        if (roomsParent == null)
-        {
-            roomsParent = new GameObject("Rooms");
-        }
-
-        instantiatedObject.transform.SetParent(roomsParent.transform);
-        return instantiatedObject;
-    }
+    
 
     void MovePlayerToRoom(GameObject door)
     {
@@ -271,8 +216,9 @@ public class LevelMapBuilder : MonoBehaviour
         // }
 
         // // 2. activate wall
-        // GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
-        // wall.GetComponent<Wall>().isNaturalWall = true;
+        GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
+        wall.SetActive(true);
+        wall.GetComponent<Wall>().isNaturalWall = true;
         
 
     }
