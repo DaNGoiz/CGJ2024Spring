@@ -135,13 +135,64 @@ public class LevelMapBuilder : MonoBehaviour
         }
     }
 
+    // This method is called when building the room
     public void RemoveDoorAndAddWall(Door.Direction direction)
     {
         // 1. remove door component + grid
         // 找到当前房间指定方向的门组件，set active=false;
-        // 然后找到门所在的位置覆盖的tile，设置为空tile
-        // 2. activate wall
-        // 找到当前房间同方向的墙，把isnatural设为true，调用激活
+        GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
         
+        // 预设四个tile在tilema里的位置，根据方向控制tile变为空
+
+        // 2. activate wall
+        GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
+        wall.GetComponent<Wall>().isNaturalWall = true;
+        
+
     }
+
+    public void ActivateBannerWhenFight()
+    {
+        GameObject currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
+        Room currentRoomScript = currentRoom.GetComponent<Room>();
+        if (!currentRoomScript.upWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.upWall.GetComponent<Wall>().ActivateBanner();
+        }
+        if (!currentRoomScript.downWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.downWall.GetComponent<Wall>().ActivateBanner();
+        }
+        if (!currentRoomScript.leftWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.leftWall.GetComponent<Wall>().ActivateBanner();
+        }
+        if (!currentRoomScript.rightWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.rightWall.GetComponent<Wall>().ActivateBanner();
+        }
+    }
+
+    public void DisactivateBannerAfterFight()
+    {
+        GameObject currentRoom = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
+        Room currentRoomScript = currentRoom.GetComponent<Room>();
+        if (!currentRoomScript.upWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.upWall.GetComponent<Wall>().DisactivateBanner();
+        }
+        if (!currentRoomScript.downWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.downWall.GetComponent<Wall>().DisactivateBanner();
+        }
+        if (!currentRoomScript.leftWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.leftWall.GetComponent<Wall>().DisactivateBanner();
+        }
+        if (!currentRoomScript.rightWall.GetComponent<Wall>().isNaturalWall)
+        {
+            currentRoomScript.rightWall.GetComponent<Wall>().DisactivateBanner();
+        }
+    }
+
 }

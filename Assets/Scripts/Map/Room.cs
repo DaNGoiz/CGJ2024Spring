@@ -4,8 +4,9 @@ public class Room : MonoBehaviour
 {
     public bool up, down, left, right;
     public GameObject currentUpDoor, currentDownDoor, currentLeftDoor, currentRightDoor; // 当前房间的门
+    public GameObject upWall, downWall, leftWall, rightWall; // 当前房间的墙
     public GameObject nextRoomDownDoor, nextRoomUpDoor, nextRoomRightDoor, nextRoomLeftDoor; // 通往下一个房间的门
-
+    
     void OnValidate()
     {
         if (currentUpDoor != null) currentUpDoor.SetActive(up);
@@ -48,6 +49,23 @@ public class Room : MonoBehaviour
                 return currentLeftDoor;
             case Door.Direction.Right:
                 return currentRightDoor;
+            default:
+                return null;
+        }
+    }
+
+    public GameObject GetCorrespondingWall(Door.Direction currentDoorDirection)
+    {
+        switch (currentDoorDirection)
+        {
+            case Door.Direction.Up:
+                return upWall;
+            case Door.Direction.Down:
+                return downWall;
+            case Door.Direction.Left:
+                return leftWall;
+            case Door.Direction.Right:
+                return rightWall;
             default:
                 return null;
         }

@@ -688,6 +688,10 @@ MonoBehaviour:
   currentDownDoor: {fileID: 0}
   currentLeftDoor: {fileID: 0}
   currentRightDoor: {fileID: 0}
+  upWall: {fileID: 0}
+  downWall: {fileID: 0}
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
   nextRoomDownDoor: {fileID: 0}
   nextRoomUpDoor: {fileID: 0}
   nextRoomRightDoor: {fileID: 0}

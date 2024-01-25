@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    bool isNaturalWall;
-    Door.Direction direction;
+    public bool isNaturalWall;
+    public Door.Direction direction;
+
+    [Header("Components")]
+    public GameObject banner;
+    public BoxCollider2D collider2d;
 
     public void ActivateBanner()
     {
-        // if is not natural: show banner and collider
         if (!isNaturalWall)
         {
-
+            banner.SetActive(true);
+            collider2d.enabled = true;
         }
-        // else: show collider only
         else
         {
-
+            collider2d.enabled = true;
         }
 
     }
 
     public void DisactivateBanner()
     {
-        // if is not natural: hide banner and collider
         if (!isNaturalWall)
         {
-            
+            banner.SetActive(false);
+            collider2d.enabled = false;
         }
     }
 }
