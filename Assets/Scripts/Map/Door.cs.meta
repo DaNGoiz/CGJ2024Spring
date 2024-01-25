@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Editor/RoomEditor.cs.meta
-guid: 7a9cfcc8af8132346bf01b87b721258c
+<<<<<<<< HEAD:Assets/Scripts/Map/Door.cs.meta
+guid: 04e462c8b32aa2541a35a32857edfd85
 ========
-guid: 63a3fcf2e9c0f6b4d8e02a7490435519
->>>>>>>> PlayerAndEnemy:Assets/Health.cs.meta
+guid: 97e8f163c3f02884cb5d17dc332aa977
+>>>>>>>> PlayerAndEnemy:Assets/Scripts/Players/BtnP1Add10.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
