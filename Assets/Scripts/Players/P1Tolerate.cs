@@ -35,7 +35,7 @@ public class P1Tolerate : MonoBehaviour
     void TolerateLaugh()//憋笑条的控制，憋憋
     {
         //当抖动幅度变化时仅一次重置位置
-        bool shake50 = true, shake70 = true, shake90 = true;
+        bool shake30=true, shake50 = true, shake70 = true, shake90 = true;
         if(!laughing)
         {
             //消减条
@@ -54,11 +54,21 @@ public class P1Tolerate : MonoBehaviour
             {
                 tolerateBarP1 = 0;
             }
-            if (tolerateBarP1 < 50)
+            if (tolerateBarP1 < 30)
             {
                 shakePos = new Vector2(0, 0);
                 transform.localPosition = shakePos;
                 shake50 = shake70 = shake90 = true;//恢复正常时使得下一次抖动能重置位置
+            }
+            else if (tolerateBarP1 < 50)//>30
+            {
+                if (shake30)
+                {
+                    transform.localPosition = shakePos = new Vector2(0, 0);
+                    shake50 = false;
+                }
+                shakePos.x += 0.05f * Mathf.Sin(shakeTime * 25);
+                transform.localPosition = shakePos;
             }
             else if (tolerateBarP1 < 70)//>50
             {
