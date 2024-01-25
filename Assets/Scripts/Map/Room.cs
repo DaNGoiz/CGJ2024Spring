@@ -88,6 +88,9 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This room door direction + next room door
+    /// </summary>
     public void BindDoor(Door.Direction direction, GameObject door)
     {
         switch (direction)
