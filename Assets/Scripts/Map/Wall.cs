@@ -5,11 +5,17 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     bool isNaturalWall;
+    Door.Direction direction;
 
     public void ActivateBanner()
     {
         // if is not natural: show banner and collider
         if (!isNaturalWall)
+        {
+
+        }
+        // else: show collider only
+        else
         {
 
         }

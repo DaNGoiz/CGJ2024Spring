@@ -138,8 +138,10 @@ public class LevelMapBuilder : MonoBehaviour
     public void RemoveDoorAndAddWall(Door.Direction direction)
     {
         // 1. remove door component + grid
+        // 找到当前房间指定方向的门组件，set active=false;
+        // 然后找到门所在的位置覆盖的tile，设置为空tile
         // 2. activate wall
-        // in level map builder
-
+        // 找到当前房间同方向的墙，把isnatural设为true，调用激活
+        
     }
 }
