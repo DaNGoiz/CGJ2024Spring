@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ed0e001f39dc1d41a643be84eaa2895
+guid: 3cdf0b9f0cea6894bbd379c9609ad048
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flower01-05-Sheet_0
+      name: LaughFlower_RWalk_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,41 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3733728d45146e24a9fca259e8ae0669
-      internalID: -2140516585
+      spriteID: 323a9ef77f0386445bae2cd648b809ab
+      internalID: 1461348741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flower01-05-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5263a2f213d2e34ebe2cbcaa43c238e
-      internalID: -973067423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flower01-05-Sheet_2
+      name: LaughFlower_RWalk_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,41 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af9e17d83b3be604aa379b44e3733209
-      internalID: -705604539
+      spriteID: 59cb776d9e2c3c345bbd305c67be6fc2
+      internalID: -1029580609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flower01-05-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec1e08fd48b836d42beb07b4968c5386
-      internalID: -730655503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flower01-05-Sheet_4
+      name: LaughFlower_RWalk_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,8 +160,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a859e333db777b6449bc2331d6eb0e5b
-      internalID: 1813391254
+      spriteID: c1e33dcfd76ecc24abf02b6031fe316e
+      internalID: 2068293416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_RWalk_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099f6534fb097e646945c8b4173dfd84
+      internalID: 546070336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_RWalk_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65fe5bb431f3f2a41952db0366d8e8c9
+      internalID: -1194535170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_RWalk_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebdb0d2dcd01d245a08bdc8dcb9f5da
+      internalID: -370040103
       vertices: []
       indices: 
       edges: []
@@ -219,11 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flower01-05-Sheet_2: -705604539
-      Flower01-05-Sheet_4: 1813391254
-      Flower01-05-Sheet_3: -730655503
-      Flower01-05-Sheet_1: -973067423
-      Flower01-05-Sheet_0: -2140516585
+      LaughFlower_RWalk_2: 2068293416
+      LaughFlower_RWalk_5: -370040103
+      LaughFlower_RWalk_3: 546070336
+      LaughFlower_RWalk_1: -1029580609
+      LaughFlower_RWalk_4: -1194535170
+      LaughFlower_RWalk_0: 1461348741
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
