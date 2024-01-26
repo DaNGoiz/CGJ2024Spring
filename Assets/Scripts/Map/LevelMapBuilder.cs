@@ -169,14 +169,17 @@ public class LevelMapBuilder : MonoBehaviour
             GameObject currentRoomDoor = currentRoomScript.GetCorrespondingDoor(currentDoorDirection);
             GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
 
-            if(currentRoomDoor != null && nextRoomDoor != null)
+            if(currentRoomDoor != null)
             {
-                currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
-                nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
+                RemoveWall(currentDoorDirection);
+                if(nextRoomDoor != null)
+                {
+                    currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
+                    nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
+                }
             }
             else
             {
-                print("Add Wall");
                 RemoveDoorAndAddWall(currentDoorDirection);
             }
         }
@@ -226,12 +229,21 @@ public class LevelMapBuilder : MonoBehaviour
         }
     }
 
+    public void RemoveWall(Door.Direction direction)
+    {
+        GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
+        if(wall != null)
+        {
+            wall.SetActive(false);
+        }
+    }
+
     // This method is called when building the room
     public void RemoveDoorAndAddWall(Door.Direction direction)
     {
         // 1. remove door component + grid
-        GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
-        door.SetDoorDirection(Door.Direction.Null);
+        // GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
+        // Door.SetDoorDirection(door, Door.Direction.Null);
 
         // if(direction == Door.Direction.Up)
         // {
