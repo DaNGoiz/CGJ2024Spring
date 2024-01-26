@@ -6,7 +6,8 @@ public class Room : MonoBehaviour
     public GameObject currentUpDoor, currentDownDoor, currentLeftDoor, currentRightDoor; // 当前房间的门
     public GameObject upWall, downWall, leftWall, rightWall; // 当前房间的墙
     public GameObject nextRoomDownDoor, nextRoomUpDoor, nextRoomRightDoor, nextRoomLeftDoor; // 通往下一个房间的门
-    
+    // vm
+
     void OnValidate()
     {
         if (currentUpDoor != null) currentUpDoor.SetActive(up);

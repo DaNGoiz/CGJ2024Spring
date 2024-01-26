@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1779112906}
   - component: {fileID: 1779112908}
   - component: {fileID: 1779112907}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2059180175}
   - component: {fileID: 2059180177}
   - component: {fileID: 2059180176}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: DownDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 2140946547}
   - component: {fileID: 2140946549}
   - component: {fileID: 2140946548}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6235128038990948499}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371436302443247988}
   - component: {fileID: 3380743435620387196}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8239057257665756980}
   - component: {fileID: 4040240883120184084}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 6101970469813773868}
   - component: {fileID: 6101970469813773869}
   - component: {fileID: 565525792}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: UpDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6101970469971230730}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7136134937612681435}
   - component: {fileID: 3207854052995342500}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 2012456540196901609}
   - component: {fileID: 42205793245133017}
   - component: {fileID: 4435996733456281746}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3680612245418509646}
   - component: {fileID: 3819894133090058505}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +781,7 @@ GameObject:
   - component: {fileID: 1953014894275314219}
   - component: {fileID: 7886368740204437063}
   - component: {fileID: 4402469172976303226}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 433656794684598319}
   - component: {fileID: 7030261362927770135}
   - component: {fileID: 18799318120095000}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: DownWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 5986362471147519633}
   - component: {fileID: 7565896990344230041}
   - component: {fileID: 9012692477337608673}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: UpWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 8855580406959856850}
   - component: {fileID: 8855580406959856848}
   - component: {fileID: 8855580406959856849}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3241,7 +3241,7 @@ GameObject:
   - component: {fileID: 8855580407962585697}
   - component: {fileID: 790846750}
   - component: {fileID: 890239504}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
