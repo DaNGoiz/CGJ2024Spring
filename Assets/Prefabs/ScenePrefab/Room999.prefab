@@ -2634,6 +2634,8 @@ MonoBehaviour:
   nextRoomUpDoor: {fileID: 0}
   nextRoomRightDoor: {fileID: 0}
   nextRoomLeftDoor: {fileID: 0}
+  virtualCamera: {fileID: 0}
+  tilemap: {fileID: 0}
 --- !u!1 &5703055590060733819
 GameObject:
   m_ObjectHideFlags: 0

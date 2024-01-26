@@ -1,4 +1,6 @@
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
@@ -6,7 +8,8 @@ public class Room : MonoBehaviour
     public GameObject currentUpDoor, currentDownDoor, currentLeftDoor, currentRightDoor; // 当前房间的门
     public GameObject upWall, downWall, leftWall, rightWall; // 当前房间的墙
     public GameObject nextRoomDownDoor, nextRoomUpDoor, nextRoomRightDoor, nextRoomLeftDoor; // 通往下一个房间的门
-    // vm
+    public Cinemachine.CinemachineVirtualCamera virtualCamera;
+    public Tilemap tilemap;
 
     void OnValidate()
     {
