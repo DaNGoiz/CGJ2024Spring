@@ -169,19 +169,19 @@ public class LevelMapBuilder : MonoBehaviour
             GameObject currentRoomDoor = currentRoomScript.GetCorrespondingDoor(currentDoorDirection);
             GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
 
-            if(currentRoomDoor != null)
+            if(currentRoomDoor != null && nextRoomDoor != null)
             {
-                RemoveWall(currentDoorDirection);
-                if(nextRoomDoor != null)
-                {
-                    currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
-                    nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
-                }
+                currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
+                nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
             }
             else
             {
                 RemoveDoorAndAddWall(currentDoorDirection);
             }
+        }
+        else
+        {
+            RemoveWall(currentDoorDirection);
         }
     }
 
@@ -242,29 +242,30 @@ public class LevelMapBuilder : MonoBehaviour
     public void RemoveDoorAndAddWall(Door.Direction direction)
     {
         // 1. remove door component + grid
-        // GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
-        // Door.SetDoorDirection(door, Door.Direction.Null);
+        Tilemap tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
+        GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
+        Door.SetDoorDirection(door, Door.Direction.Null);
 
-        // if(direction == Door.Direction.Up)
-        // {
-        //     // 将tilemap里(-1,5,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, 5, 0), null);
-        // }
-        // else if(direction == Door.Direction.Down)
-        // {
-        //     // 将tilemap里(-1,-5,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, -5, 0), null);
-        // }
-        // else if(direction == Door.Direction.Left)
-        // {
-        //     // 将tilemap里(-12,0,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-12, 0, 0), null);
-        // }
-        // else if(direction == Door.Direction.Right)
-        // {
-        //     // 将tilemap里(10,0,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(10, 0, 0), null);
-        // }
+        if(direction == Door.Direction.Up)
+        {
+            // 将tilemap里(-1,5,0)位置的tile变为空
+            GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, 5, 0), null);
+        }
+        else if(direction == Door.Direction.Down)
+        {
+            // 将tilemap里(-1,-5,0)位置的tile变为空
+            GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, -5, 0), null);
+        }
+        else if(direction == Door.Direction.Left)
+        {
+            // 将tilemap里(-12,0,0)位置的tile变为空
+            GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-12, 0, 0), null);
+        }
+        else if(direction == Door.Direction.Right)
+        {
+            // 将tilemap里(10,0,0)位置的tile变为空
+            GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(10, 0, 0), null);
+        }
 
         // 2. activate wall
         GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
