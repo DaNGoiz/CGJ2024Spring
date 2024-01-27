@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,17 @@ public class PlayerTolerate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     /// <summary>
     /// 当玩家从忍受转变为迎战的状态切换
     /// </summary>
     /// <param name="isChangeState">true为改变 false为未改变</param>
-    public bool SwitchInTrigger(bool isChangeState)
+    public string SwitchInTrigger(bool isChangeState)
     {
         transform.localPosition = new Vector2(0, 0);//重置回中心
         laughing = isChangeState;
-        return laughing;
+        return laughing?"true":"false";
     }
+
 }

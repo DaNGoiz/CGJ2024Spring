@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class P2Tolerate : MonoBehaviour
+public class P2Tolerate : PlayerTolerate
 {
     //SF
     [SerializeField]
@@ -10,7 +12,6 @@ public class P2Tolerate : MonoBehaviour
 
     //NoSF
     float shakeTime;
-    private bool laughing;
     static public bool[] phaseP2;//憋笑阶段,转阶段了吗
     static public float tolerateBarP2;
 
@@ -116,8 +117,7 @@ public class P2Tolerate : MonoBehaviour
             }
             else if (tolerateBarP2 > 100)
             {
-                laughing = true;
-                tolerateBarP2 = 100;
+                Player1CTRL.laughTriggerP1 = Player2CTRL.laughTriggerP2 = Convert.ToBoolean(SwitchInTrigger(true));
             }
         }
         else
@@ -131,5 +131,13 @@ public class P2Tolerate : MonoBehaviour
             tolerateBarP2 = 100;
         }
 
+        //同时转变的动画切换
+        if(Player2CTRL.laughTriggerP2)
+        {
+            for (int i = 0; i < phaseP2.Length; i++)
+            {
+                phaseP2[i] = true;
+            }
+        }
     }
 }
