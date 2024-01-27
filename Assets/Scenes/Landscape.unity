@@ -263,6 +263,7 @@ MonoBehaviour:
   - {fileID: 8855580407216847280, guid: 4cf6a24c041cd31418e5b6ba79d67429, type: 3}
   roomPrefabs:
   - {fileID: 6055639293301206856, guid: 1ef398f7d733625418b802c2ce4b627f, type: 3}
+  - {fileID: 6055639293301206856, guid: 0151752995b8d1244862e26bc6793a2b, type: 3}
   minRoomCount: 8
   maxRoomCount: 14
   totalRoomCount: 0
