@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae184c85c1e6d7b48a874021a08acd95
+guid: 975d57f01c4f357468c7027b22d81a57
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,74 +104,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Haley_left1_0
+      name: LaughFlower_FWalk_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 1
-        width: 15
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e318ad9d44e8aa24e9cd8aa8c53b6cc3
-      internalID: -478656952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Haley_left1_1
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 1
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bda1cb8528e90de4db1d5d79a9c34d38
-      internalID: -242833426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Haley_left1_2
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 1
-        width: 16
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae4088101202dd14bb5dc77ae821a925
-      internalID: -965611358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Haley_left1_3
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 1
+        x: 7
+        y: 0
         width: 17
         height: 27
       alignment: 0
@@ -181,18 +118,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d40bc26048e13ae46a06fcc7b972571e
-      internalID: 1800735608
+      spriteID: 5b61f2aa437c0ad46990d7fa810d894e
+      internalID: 630667123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_left1_4
+      name: LaughFlower_FWalk_1
       rect:
         serializedVersion: 2
-        x: 137
-        y: 1
+        x: 41
+        y: 0
         width: 16
         height: 27
       alignment: 0
@@ -202,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e14ae5178d0329840b287c7cc8ab1e48
-      internalID: -2110144142
+      spriteID: 9e156c313fa31434ab7904cc9a2c328e
+      internalID: 1434572909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_left1_5
+      name: LaughFlower_FWalk_2
       rect:
         serializedVersion: 2
-        x: 169
-        y: 1
-        width: 15
-        height: 28
+        x: 73
+        y: 0
+        width: 17
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,8 +160,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d9734ec6f15681498c7db9a4f158726
-      internalID: 595651930
+      spriteID: 68414452156779b49b20065ca453de74
+      internalID: -412899480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_FWalk_3
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 0
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebf0cb72189dbb64ea5bba5a8da5b45c
+      internalID: 1073403273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_FWalk_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1558bfcee56ebd24cbd166ebbe5f7928
+      internalID: -1910003852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_FWalk_5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2122f9189dd2d844ebf26138dd4d4aa7
+      internalID: 1709177544
       vertices: []
       indices: 
       edges: []
@@ -240,12 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Haley_left1_2: -965611358
-      Haley_left1_5: 595651930
-      Haley_left1_0: -478656952
-      Haley_left1_1: -242833426
-      Haley_left1_3: 1800735608
-      Haley_left1_4: -2110144142
+      LaughFlower_FWalk_2: -412899480
+      LaughFlower_FWalk_0: 630667123
+      LaughFlower_FWalk_1: 1434572909
+      LaughFlower_FWalk_4: -1910003852
+      LaughFlower_FWalk_3: 1073403273
+      LaughFlower_FWalk_5: 1709177544
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

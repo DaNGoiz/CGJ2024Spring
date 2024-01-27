@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae184c85c1e6d7b48a874021a08acd95
+guid: 2c2e53ec537371d4597680ac8954ec9b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Haley_left1_0
+      name: LaughFlower_Awake_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 1
-        width: 15
-        height: 29
+        x: 5
+        y: 32
+        width: 27
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e318ad9d44e8aa24e9cd8aa8c53b6cc3
-      internalID: -478656952
+      spriteID: efa785de5767f114f818cf99c05ac8c0
+      internalID: -740850156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_left1_1
+      name: LaughFlower_Awake_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1
-        width: 16
-        height: 29
+        x: 37
+        y: 32
+        width: 27
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,146 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda1cb8528e90de4db1d5d79a9c34d38
-      internalID: -242833426
+      spriteID: 9f685282ee9303c4e8eb43d7d95feb0e
+      internalID: 732566608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_left1_2
+      name: LaughFlower_Awake_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 32
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb8e27007fc70145ba1515d1b1ebf67
+      internalID: 1097233549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 32
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4077b543e15dd84cac951229df3eee2
+      internalID: 2053195525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 32
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29bb39a27b664f4a8752afd7fc450c8
+      internalID: 1820376288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 32
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e838f5411f6660b4ea46b6e6013a98d5
+      internalID: 579759137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 261b3bbdebd997a4c9c0b272a7b04490
+      internalID: 396565170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_7
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 25
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3776906ddbc8ddb498d021ac5695f0e3
+      internalID: -1281397110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_8
       rect:
         serializedVersion: 2
         x: 73
-        y: 1
-        width: 16
-        height: 28
+        y: 0
+        width: 21
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,18 +286,60 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae4088101202dd14bb5dc77ae821a925
-      internalID: -965611358
+      spriteID: 3986fcdffd796c64aa1dd3456752d886
+      internalID: 1020854092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Haley_left1_3
+      name: LaughFlower_Awake_9
       rect:
         serializedVersion: 2
-        x: 105
-        y: 1
+        x: 106
+        y: 0
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a728c64f9c137a48b002b355f48e1e7
+      internalID: 1744238153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_10
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e936e4bfe86ef4d9214f7c8ac06ea3
+      internalID: 1574149928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaughFlower_Awake_11
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
         width: 17
         height: 27
       alignment: 0
@@ -181,50 +349,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d40bc26048e13ae46a06fcc7b972571e
-      internalID: 1800735608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Haley_left1_4
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 1
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e14ae5178d0329840b287c7cc8ab1e48
-      internalID: -2110144142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Haley_left1_5
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 1
-        width: 15
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d9734ec6f15681498c7db9a4f158726
-      internalID: 595651930
+      spriteID: f3ade8a83a3398a468c7e73966c5bc34
+      internalID: -1432025800
       vertices: []
       indices: 
       edges: []
@@ -240,12 +366,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Haley_left1_2: -965611358
-      Haley_left1_5: 595651930
-      Haley_left1_0: -478656952
-      Haley_left1_1: -242833426
-      Haley_left1_3: 1800735608
-      Haley_left1_4: -2110144142
+      LaughFlower_Awake_3: 2053195525
+      LaughFlower_Awake_7: -1281397110
+      LaughFlower_Awake_11: -1432025800
+      LaughFlower_Awake_4: 1820376288
+      LaughFlower_Awake_8: 1020854092
+      LaughFlower_Awake_10: 1574149928
+      LaughFlower_Awake_6: 396565170
+      LaughFlower_Awake_0: -740850156
+      LaughFlower_Awake_2: 1097233549
+      LaughFlower_Awake_9: 1744238153
+      LaughFlower_Awake_1: 732566608
+      LaughFlower_Awake_5: 579759137
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
