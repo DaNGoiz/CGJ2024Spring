@@ -9,30 +9,25 @@ public class GhostFlower : Plant
 {
     [SerializeField]
     GameObject projPrefab;
-    private void Awake()
-    {
-        attackDirection = Vector3.left;
-    }
     private void Start()
     {
-        timerName = TimerInstance.CreateCommonTimer("GhostFlower");
+        autoAttackTimerName = TimerInstance.CreateCommonTimer("GhostFlower");
         SwitchMode(AttackMode.Auto);
-        FaceTo(Vector2.right);
     }
     private void Update()
     {
         if (m_AttackMode == AttackMode.Auto)
-            if (TimerInstance.GetTime(timerName) >= atkInterval)
+            if (TimerInstance.GetTime(autoAttackTimerName) >= atkInterval)
             {
                 StartCoroutine(Atk());
-                TimerInstance.ResetTimer(timerName);
+                TimerInstance.ResetTimer(autoAttackTimerName);
             }
         IEnumerator Atk()
         {
             m_animator.SetTrigger("Attack");
             yield return new WaitForSeconds(2f / 3f);
             Attack(projPrefab, attackDirection, 1.5f, attackDirection.normalized / 2f, null);
-            TimerInstance.StartTimer(timerName);
+            TimerInstance.StartTimer(autoAttackTimerName);
         }
     }
 }

@@ -18,24 +18,20 @@ public class SpittingMelon : Plant
             m_animator.SetTrigger("Attack");
         }
     }
-    private void Awake()
-    {
-        attackDirection = Vector2.left;
-    }
     private void Start()
     {
-        timerName = TimerInstance.CreateCommonTimer("SpittingMelon");
+        warningTime = 1.5f;
+        autoAttackTimerName = TimerInstance.CreateCommonTimer("SpittingMelon");
         SwitchMode(AttackMode.Auto);
-        FaceTo(attackDirection);
         projPrefab = (GameObject)ExtensionTools.LoadResource(ResourceType.Projectile, PrefabName.ToxicFumes);
     }
     private void Update()
     {
         if (m_AttackMode == AttackMode.Auto)
-            if (TimerInstance.GetTime(timerName) >= atkInterval)
+            if (TimerInstance.GetTime(autoAttackTimerName) >= atkInterval)
             {
                 StartCoroutine(WarnAndAttack(warningTime));
-                TimerInstance.ResetTimer(timerName);
+                TimerInstance.ResetTimer(autoAttackTimerName);
             }
         IEnumerator WarnAndAttack(float time)
         {
@@ -43,7 +39,7 @@ public class SpittingMelon : Plant
             yield return new WaitForSeconds(time);
             object[] args = new object[] { 10 };
             Attack(projPrefab, attackDirection, 1.5f, attackDirection.normalized / 2f + Vector2.up / 2f, args).transform.parent = transform;
-            TimerInstance.StartTimer(timerName);
+            TimerInstance.StartTimer(autoAttackTimerName);
         }
     }
 }

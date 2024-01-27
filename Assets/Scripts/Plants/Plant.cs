@@ -40,18 +40,25 @@ public class Plant : MonoBehaviour
     /// YÖá³¯Ïò
     /// </summary>
     public int dirY;
-    protected string timerName;
+    protected string autoAttackTimerName;
+    private void Awake()
+    {
+        if (attackDirection != Vector2.zero)
+            FaceTo(attackDirection);
+        else
+            SetAttackDirection(Vector2.left);
+    }
     protected void SwitchMode(AttackMode mode)
     {
         switch (mode)
         {
             case AttackMode.Auto:
                 m_AttackMode = AttackMode.Auto;
-                TimerInstance.StartTimer(timerName, reset: true);
+                TimerInstance.StartTimer(autoAttackTimerName, reset: true);
                 break;
             case AttackMode.Trigger:
                 m_AttackMode = AttackMode.Trigger;
-                TimerInstance.ResetTimer(timerName);
+                TimerInstance.ResetTimer(autoAttackTimerName);
                 break;
         }
     }
@@ -76,11 +83,6 @@ public class Plant : MonoBehaviour
         attackDirection = dir;
         FaceTo(dir);
     }
-    //ÔÝÊ±
-    protected virtual void Attack()
-    {
-        m_animator.SetTrigger("Attack");
-    }
     protected virtual void Warning(float time) { }
     protected virtual GameObject Attack(GameObject projPrefab, Vector2 dir, float speed, params object[] args)
     {
@@ -104,6 +106,6 @@ public class Plant : MonoBehaviour
     }
     protected void OnObjectDestroy()
     {
-        TimerInstance.RemoveTimer(timerName);
+        TimerInstance.RemoveTimer(autoAttackTimerName);
     }
 }

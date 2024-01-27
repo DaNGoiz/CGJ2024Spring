@@ -60,33 +60,43 @@ public class ObjectsPool : MonoBehaviour
     /// <returns>预制体对应的对象</returns>
     public GameObject RequestObject(GameObject prefab)
     {
-        if (prefab == null)
+        try
         {
-            Debug.LogError("Prefab is null");
-            return null;
-        }
-        string tag = prefab.GetInstanceID().ToString();
-        GameObject go;
-        if (pool.ContainsKey(tag))
-        {
-            if (pool[tag].Count > 0)
+            if (prefab == null)
             {
-                go = pool[tag].Dequeue();
+                Debug.LogError("Prefab is null");
+                return null;
+            }
+            string tag = prefab.GetInstanceID().ToString();
+            GameObject go;
+            if (pool.ContainsKey(tag))
+            {
+                if (pool[tag].Count > 0)
+                {
+                    go = pool[tag].Dequeue();
+                }
+                else
+                {
+                    go = Instantiate(prefab);
+                }
             }
             else
             {
+                pool.Add(tag, new Queue<GameObject>());
                 go = Instantiate(prefab);
             }
+            goTag.Add(go, tag);
+            go.transform.parent = null;
+            go.SetActive(true);
+            return go;
         }
-        else
+        catch
         {
-            pool.Add(tag, new Queue<GameObject>());
-            go = Instantiate(prefab);
+            GameObject go = Instantiate(prefab);
+            goTag.Add(go, tag);
+            go.transform.parent = null;
+            return go;
         }
-        goTag.Add(go, tag);
-        go.transform.parent = null;
-        go.SetActive(true);
-        return go;
     }
     private void Awake()
     {

@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animator: {fileID: 1208602955}
   m_renderer: {fileID: 6307649419658812812}
-  attackDirection: {x: 0, y: 0}
-  atkInterval: 0
+  attackDirection: {x: -1, y: 0}
+  atkInterval: 3.5
   dirX: 0
   dirY: 0
-  projectile: {fileID: 3955948856452564753, guid: 7dabe6e6d20b2d84c9e862d177d7a048, type: 3}
+  projPrefab: {fileID: 3955948856452564753, guid: 7dabe6e6d20b2d84c9e862d177d7a048, type: 3}

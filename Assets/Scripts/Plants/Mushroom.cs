@@ -11,21 +11,21 @@ public class Mushroom : Plant
     private float atkCooldown;
     private void Start()
     {
-        timerName = TimerInstance.CreateCommonTimer("Mushroom");
+        autoAttackTimerName = TimerInstance.CreateCommonTimer("Mushroom");
         SwitchMode(AttackMode.Trigger);
         FaceTo(Vector2.right, false);
     }
     private void Update()
     {
-        if(TimerInstance.GetTime(timerName) >= atkCooldown)
-            TimerInstance.ResetTimer(timerName);
+        if(TimerInstance.GetTime(autoAttackTimerName) >= atkCooldown)
+            TimerInstance.ResetTimer(autoAttackTimerName);
     }
     public void TriggerAttack()
     {
-        if(TimerInstance.GetTime(timerName) == 0)
+        if(TimerInstance.GetTime(autoAttackTimerName) == 0)
         {
-            TimerInstance.StartTimer(timerName);
-            Attack();
+            TimerInstance.StartTimer(autoAttackTimerName);
+            //Attack();
         }    
     }
 }
