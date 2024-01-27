@@ -26,9 +26,11 @@ public class Player1CTRL : PlayerCTRL
     private SpriteRenderer playerSprite;
     private Transform facing;
     private Transform shootPoint;
+    private FaceDir faceDir;
     static public bool movingP1;
     static public bool laughTriggerP1;
-    static public FaceDir faceDirP1;
+    static public bool isLockedP1;
+    static public Vector2 animDirP1;//给予P1移动的动画器(BLTree)信号，注意！x=方向，y=动作！
 
     #endregion
     /// <summary>
@@ -74,6 +76,7 @@ public class Player1CTRL : PlayerCTRL
         //static
         movingP1 = false;
         laughTriggerP1 = false;
+        animDirP1 = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -93,7 +96,7 @@ public class Player1CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.y += speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                faceDirP1 = FaceDir.back;
+                faceDir = FaceDir.back;
             }
             pos.y += speed * Time.deltaTime;
         }
@@ -105,7 +108,7 @@ public class Player1CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.y -= speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                faceDirP1 = FaceDir.front;
+                faceDir = FaceDir.front;
             }
             pos.y -= speed * Time.deltaTime;
         }
@@ -121,7 +124,7 @@ public class Player1CTRL : PlayerCTRL
                 // {
                 //     playerSprite.flipX = true;
                 // }
-                faceDirP1 = FaceDir.left;
+                faceDir = FaceDir.left;
             }
             pos.x -= speed * Time.deltaTime;
         }
@@ -137,7 +140,7 @@ public class Player1CTRL : PlayerCTRL
                 // {
                 //     playerSprite.flipX = false;
                 // }
-                faceDirP1 = FaceDir.right;
+                faceDir = FaceDir.right;
             }
             pos.x += speed * Time.deltaTime;
         }
@@ -176,6 +179,60 @@ public class Player1CTRL : PlayerCTRL
             }
         }
         transform.position = pos;
+
+        //动画与锁定方向，与射击朝向（8方）不同
+        if (movingP1)
+        {
+            switch (faceDir)
+            {
+                case FaceDir.front:
+                    animDirP1 = new Vector2(0, -1);
+                    break;
+
+                case FaceDir.back:
+                    animDirP1 = new Vector2(0, 1);
+                    break;
+
+                case FaceDir.left:
+                    animDirP1 = new Vector2(-1, 0);
+                    break;
+
+                case FaceDir.right:
+                    animDirP1 = new Vector2(1, 0);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+        }
+        else
+        {
+            switch (faceDir)
+            {
+                case FaceDir.front:
+                    animDirP1 = new Vector2(0, -0.1f);
+                    break;
+
+                case FaceDir.back:
+                    animDirP1 = new Vector2(0, 0.1f);
+                    break;
+
+                case FaceDir.left:
+                    animDirP1 = new Vector2(-0.1f, 0);
+                    break;
+
+                case FaceDir.right:
+                    animDirP1 = new Vector2(0.1f, 0);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+        }
 
         //move完了
 

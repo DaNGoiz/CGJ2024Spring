@@ -100,7 +100,7 @@ public class P2Tolerate : MonoBehaviour
                     phaseP2[3] = false;
 
                 }
-                shakePos.x += 0.3f * Mathf.Sin(shakeTime * 75);
+                shakePos.x += 0.1f * Mathf.Sin(shakeTime * 75);
                 transform.localPosition = shakePos;
             }
             else if (tolerateBarP2 < 100)//>90
@@ -111,7 +111,7 @@ public class P2Tolerate : MonoBehaviour
                     shake50 = false;
                     phaseP2[3] = true;//没有更高的同阶段状态了
                 }
-                shakePos.x += 0.4f * Mathf.Sin(shakeTime * 100);
+                shakePos.x += 0.15f * Mathf.Sin(shakeTime * 100);
                 transform.localPosition = shakePos;
             }
             else if (tolerateBarP2 > 100)

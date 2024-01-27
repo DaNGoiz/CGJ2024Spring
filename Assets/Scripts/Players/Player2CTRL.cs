@@ -24,6 +24,7 @@ public class Player2CTRL : PlayerCTRL
     private FaceDir faceDir;//给予P2动画器信号
     static public bool movingP2;
     static public bool laughTriggerP2;
+    static public bool isLockedP2;
     static public Vector2 animDirP2;//给予P2移动的动画器(BLTree)信号，注意！x=方向，y=动作！
     #endregion
     /// <summary>
@@ -251,10 +252,12 @@ public class Player2CTRL : PlayerCTRL
         if (Input.GetKey(KeyCode.Comma))
         {
             isLocked = true;
+            isLockedP2 = true;
         }
         if (Input.GetKeyUp(KeyCode.Comma))
         {
             isLocked = false;
+            isLockedP2 = false;
         }
         //射击方向调整
         //xy不同时为0时才能让射击点移动
