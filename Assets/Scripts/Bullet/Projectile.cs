@@ -7,9 +7,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     [SerializeField]
-    private Collider2D hitCol;
+    protected Collider2D hitCol;
     /// <summary>
     /// 当前飞行方向
     /// </summary>

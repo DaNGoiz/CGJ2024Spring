@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2225107780986242457}
   - component: {fileID: 2406009430615124779}
+  - component: {fileID: 1528165751766886501}
   m_Layer: 0
-  m_Name: warningArea_circle
+  m_Name: CircleWarningArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,3 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1528165751766886501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818079800915311201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7203b3035d2a29a42b331483853a998c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spType:
+  - {fileID: 21300000, guid: a51c5f83ad2199f41bc878ad7e056f76, type: 3}
+  - {fileID: 21300000, guid: a51c5f83ad2199f41bc878ad7e056f76, type: 3}
+  - {fileID: 21300000, guid: a51c5f83ad2199f41bc878ad7e056f76, type: 3}
+  - {fileID: 21300000, guid: a51c5f83ad2199f41bc878ad7e056f76, type: 3}

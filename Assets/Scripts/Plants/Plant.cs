@@ -70,8 +70,8 @@ public class Plant : MonoBehaviour
     /// <param name="setAnimParam">是否一起改变动画机参数</param>
     public void FaceTo(Vector2 dir, bool setAnimParam = true)
     {
-        dirX = (int)Mathf.Sign(dir.x);
-        dirY = (int)Mathf.Sign(dir.y);
+        dirX = dir.x == 0 ? 0 : (int)Mathf.Sign(dir.x);
+        dirY = dir.y == 0 ? 0 : (int)Mathf.Sign(dir.y);
         if (setAnimParam)
         {
             m_animator.SetFloat("PosX", dirX);
@@ -81,7 +81,7 @@ public class Plant : MonoBehaviour
     public void SetAttackDirection(Vector2 dir)
     {
         attackDirection = dir;
-        FaceTo(dir);
+        FaceTo(dir, false);
     }
     protected virtual void Warning(float time) { }
     protected virtual GameObject Attack(GameObject projPrefab, Vector2 dir, float speed, params object[] args)
@@ -90,6 +90,7 @@ public class Plant : MonoBehaviour
     }
     protected virtual GameObject Attack(GameObject projPrefab, Vector2 dir, float speed, Vector2 offset, params object[] args)
     {
+        SetAttackDirection(dir);
         GameObject projObj = ObjPool.RequestObject(projPrefab);
         if (projObj != null)
         {

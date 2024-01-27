@@ -6,6 +6,10 @@ using static YSFramework.GlobalManager;
 
 class BoxWarningArea : WarningArea
 {
+    [SerializeField]
+    private Sprite[] areaSprites;
+    [SerializeField]
+    private GameObject spriteObjectPrefab;
     private enum SpriteType
     {
         BoxStart,

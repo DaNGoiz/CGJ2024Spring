@@ -52,7 +52,7 @@ public class ToxicFumes : Projectile
 
 
         Vector2 next = (Vector2)transform.position + dir.normalized;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(next, Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(next, Vector3.forward);
         if (hits.Length > 0)
         {
             foreach (RaycastHit2D hit in hits)
@@ -140,5 +140,12 @@ public class ToxicFumes : Projectile
     protected override void Update()
     {
         //Do nothing
+    }
+    protected override void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == LayerMask.GetMask(LayerName.Player))
+        {
+            //Íæ¼ÒÊÜ»÷
+        }
     }
 }

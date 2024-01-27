@@ -9,6 +9,7 @@ public struct PrefabName
     public const string SpittingMelon = "SpittingMelon";
     public const string GhostFlower = "GhostFlower";
     public const string BoxWarningArea = "BoxWarningArea";
+    public const string CircleWarningArea = "CircleWarningArea";
 }
 
 public struct SpriteName
