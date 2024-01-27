@@ -20,19 +20,19 @@ public class CameraController : MonoBehaviour
 
     void CameraMove()
     {
-        if(this.transform.position.x<=2 && this.transform.position.x>=-2)
+
+
+        this.gameObject.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
+
+
+        if (this.transform.position.x >= 2)
         {
-            this.gameObject.transform.Translate(Vector3.left*MoveSpeed*Time.deltaTime*Input.GetAxis("Mouse X"));
-        }else
-        {
-            if(this.transform.position.x>0.1)
-            {
-                this.transform.position = new Vector3(2, 0, -10);
-            }
-            if (this.transform.position.x < -0.1)
-            {
-                this.transform.position = new Vector3(-2, 0, -10);
-            }
+            this.transform.position = new Vector3(2, 0, -10);
         }
+        if (this.transform.position.x <= -2)
+        {
+            this.transform.position = new Vector3(-2, 0, -10);
+        }
+
     }
 }
