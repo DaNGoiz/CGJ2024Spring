@@ -20,7 +20,9 @@ namespace YSFramework
 
         private Thread threadRead = null;
         private Thread threadWrite = null;
+#pragma warning disable IDE0052 // 删除未读的私有成员
         private bool isThreadReadRun;
+#pragma warning restore IDE0052 // 删除未读的私有成员
         private bool isThreadWriteRun;
         private string communicationName;
         private List<DataMappingModel> writeList = new List<DataMappingModel>();//保存需要写入的数据列表
