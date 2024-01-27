@@ -14,18 +14,22 @@ TagManager:
   - 
   - 
   - 
+  - Plant
   - 
   - Player
   - 
   - 
+  - Misc
+  - 
+  - 
+  - Projectile
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
+
+  - Wall
   - 
   - 
   - 
@@ -41,6 +45,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: WarningArea
+    uniqueID: 1620890103
+    locked: 0
+  - name: Plant
+    uniqueID: 789333989
+    locked: 0
+  - name: Projectile
+    uniqueID: 2944336173
   - name: Facing
     uniqueID: 4148886683
     locked: 0

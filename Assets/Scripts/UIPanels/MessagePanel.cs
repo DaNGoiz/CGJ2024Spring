@@ -10,9 +10,9 @@ namespace YSFramework
     /// </summary>
     public class MessagePanel : BasePanel
     {
-       /// <summary>
-       /// 信息文本
-       /// </summary>
+        /// <summary>
+        /// 信息文本
+        /// </summary>
         [SerializeField]
         private Text content;
         /// <summary>
@@ -29,7 +29,7 @@ namespace YSFramework
         /// 异步信息数据，最终赋值给文本
         /// </summary>
         private string syncMsg = null;
-        
+
         /// <summary>
         /// 初始化方法，用于添加对UI的监听事件
         /// </summary>

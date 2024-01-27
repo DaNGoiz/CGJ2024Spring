@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732377857551850847, guid: 4dd1ddac8fa82ab4a85d90905f6e649b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6732377857551850847, guid: 4dd1ddac8fa82ab4a85d90905f6e649b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,6 +180,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dd1ddac8fa82ab4a85d90905f6e649b, type: 3}
+--- !u!1 &1266067952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266067953}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1266067953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266067952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.560217, y: -24.17716, z: -0.38683414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313068808
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,8 +256,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRoom: {fileID: 8855580407216847280, guid: 891d2f3dcf225004b8f93f25b4b16ab1, type: 3}
-  lastRoom: {fileID: 8855580407216847280, guid: 514421d622826c94e875d3f1fbc02a8c, type: 3}
+  lastRooms:
+  - {fileID: 8855580407216847280, guid: 080034d624dbc1a4b8142cecdaa9d86c, type: 3}
+  - {fileID: 8855580407216847280, guid: 514421d622826c94e875d3f1fbc02a8c, type: 3}
+  - {fileID: 8855580407216847280, guid: b80a9c7a1c0d16b4ca46219c6cf1ea56, type: 3}
+  - {fileID: 8855580407216847280, guid: 4cf6a24c041cd31418e5b6ba79d67429, type: 3}
   roomPrefabs:
-  - {fileID: 8855580407216847280, guid: 8008b31b97fa4c34791c8179fcc20cd0, type: 3}
+  - {fileID: 6055639293301206856, guid: 1ef398f7d733625418b802c2ce4b627f, type: 3}
+  - {fileID: 6055639293301206856, guid: 0151752995b8d1244862e26bc6793a2b, type: 3}
+  minRoomCount: 8
+  maxRoomCount: 14
+  totalRoomCount: 0
+  currentRoomCount: 0
   transformPosition: 2
   roomTransformDistance: 50
+  currentRoom: {fileID: 0}
+  teleport: {fileID: 3190698699001821394, guid: a85a0fac89179874c9ae591f065c264a, type: 3}
