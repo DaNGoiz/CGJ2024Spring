@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,8 +21,11 @@ public class Player2CTRL : PlayerCTRL
     private SpriteRenderer playerSprite;
     private Transform shootPoint;
     private Transform facing;
+    private FaceDir faceDir;//给予P2动画器信号
     static public bool movingP2;
     static public bool laughTriggerP2;
+    static public bool isLockedP2;
+    static public Vector2 animDirP2;//给予P2移动的动画器(BLTree)信号，注意！x=方向，y=动作！
     #endregion
     /// <summary>
     /// 状态转换：是否移动
@@ -53,22 +57,6 @@ public class Player2CTRL : PlayerCTRL
 
         }
     }
-
-    /// <summary>
-    /// 状态移动
-    /// </summary>
-    /// <param name="_moving">true为正在移动，false为静止</param>
-    static public void MovingP2(bool _moving)
-    {
-        if(_moving)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +70,7 @@ public class Player2CTRL : PlayerCTRL
         //static
         movingP2 = false;
         laughTriggerP2 = false;
+        animDirP2 = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -101,6 +90,7 @@ public class Player2CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.y += speed * 10 * Time.deltaTime;
                 facing.position = facePos;
+                faceDir = FaceDir.back;
             }
             pos.y += speed * Time.deltaTime;
         }
@@ -112,6 +102,7 @@ public class Player2CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.y -= speed * 10 * Time.deltaTime;
                 facing.position = facePos;
+                faceDir = FaceDir.front;
             }
             pos.y -= speed * Time.deltaTime;
         }
@@ -123,10 +114,11 @@ public class Player2CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.x -= speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                if (facing.localPosition.x < 0)
-                {
-                    playerSprite.flipX = true;
-                }
+                // if (facing.localPosition.x < 0)
+                // {
+                //     playerSprite.flipX = true;
+                // }
+                faceDir = FaceDir.left;
             }
             pos.x -= speed * Time.deltaTime;
         }
@@ -138,10 +130,11 @@ public class Player2CTRL : PlayerCTRL
                 Vector2 facePos = facing.position;
                 facePos.x += speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                if (facing.localPosition.x > 0)
-                {
-                    playerSprite.flipX = false;
-                }
+                // if (facing.localPosition.x > 0)
+                // {
+                //     playerSprite.flipX = false;
+                // }
+                faceDir = FaceDir.right;
             }
             pos.x += speed * Time.deltaTime;
         }
@@ -180,6 +173,61 @@ public class Player2CTRL : PlayerCTRL
             }
         }
         transform.position = pos;
+
+        //动画与锁定方向，与射击朝向（8方）不同
+        if (movingP2)
+        {
+            switch (faceDir)
+            {
+                case FaceDir.front:
+                    animDirP2 = new Vector2(0, -1);
+                    break;
+
+                case FaceDir.back:
+                    animDirP2 = new Vector2(0, 1);
+                    break;
+
+                case FaceDir.left:
+                    animDirP2 = new Vector2(-1, 0);
+                    break;
+
+                case FaceDir.right:
+                    animDirP2 = new Vector2(1, 0);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+        }
+        else
+        {
+            switch (faceDir)
+            {
+                case FaceDir.front:
+                    animDirP2 = new Vector2(0, -0.1f);
+                    break;
+
+                case FaceDir.back:
+                    animDirP2 = new Vector2(0, 0.1f);
+                    break;
+
+                case FaceDir.left:
+                    animDirP2 = new Vector2(-0.1f, 0);
+                    break;
+
+                case FaceDir.right:
+                    animDirP2 = new Vector2(0.1f, 0);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+        }
+
         //move完了
 
         //笑，发射笑子弹和锁定方向
@@ -188,13 +236,15 @@ public class Player2CTRL : PlayerCTRL
         if (Input.GetKey(KeyCode.Comma))
         {
             isLocked = true;
+            isLockedP2 = true;
         }
         if (Input.GetKeyUp(KeyCode.Comma))
         {
             isLocked = false;
+            isLockedP2 = false;
         }
         //射击方向调整
-        //不同时为0时才能让射击点移动
+        //xy不同时为0时才能让射击点移动
         if ((facing.localPosition.x == 0 && facing.localPosition.y != 0) || (facing.localPosition.x != 0 && facing.localPosition.y == 0) || (facing.localPosition.x != 0 && facing.localPosition.y != 0))
         {
             //x
@@ -216,10 +266,5 @@ public class Player2CTRL : PlayerCTRL
                 shootPoint.localPosition = new Vector2(shootPoint.localPosition.x, Math.Sign(facing.localPosition.y) * 2);
             }
         }
-    }
-
-    public override void OnSwitchState(bool arg)
-    {
-        
     }
 }

@@ -6,6 +6,13 @@ using YSFramework;
 
 public class PlayerCTRL : MonoBehaviour
 {
+    public enum FaceDir//角色移动朝向（非射击朝向）的枚举
+    {
+        front,
+        back,
+        left,
+        right
+    };
 
     // Start is called before the first frame update
     void Start()
