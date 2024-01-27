@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Scripts/Map/Door.cs.meta
 guid: 04e462c8b32aa2541a35a32857edfd85
 ========
 guid: 97e8f163c3f02884cb5d17dc332aa977
 >>>>>>>> PlayerAndEnemy:Assets/Scripts/Players/BtnP1Add10.cs.meta
+=======
+guid: 85fd16787aff05447be0a257212cbfa4
+>>>>>>> origin/GenerateMap
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

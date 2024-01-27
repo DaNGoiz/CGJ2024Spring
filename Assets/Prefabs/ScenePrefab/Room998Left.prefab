@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6101970469813773869}
   - component: {fileID: 565525792}
   m_Layer: 0
-  m_Name: UpDoor
+  m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6101970469813773871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 4.43, z: 0}
+  m_LocalPosition: {x: -6.5, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDirection: 0
+  doorDirection: 2
 --- !u!1 &6101970469971230725
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +342,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -3, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -492,16 +502,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 26
@@ -621,12 +621,21 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 2.0000105, y: 3.000326}
-  - {x: 0.012730598, y: 3.0033772}
-  - {x: -0.004053712, y: 4.004738}
-  - {x: -0.9964583, y: 3.9971888}
+  - {x: -0.003315175, y: 3.008726}
+  - {x: -0.3475497, y: 3.001404}
+  - {x: -0.80351645, y: 3.0009265}
+  - {x: -0.9914965, y: 2.9955394}
   - {x: -1.0057352, y: 3.0019937}
   - {x: -2.9895272, y: 2.9804783}
-  - {x: -2.9972253, y: -2.01656}
+  - {x: -2.9926054, y: 0.9895108}
+  - {x: -4.01252, y: 0.99873173}
+  - {x: -3.9892766, y: 0.015893042}
+  - {x: -2.9941523, y: -0.011021918}
+  - {x: -2.9972253, y: -1.998727}
+  - {x: -1.0015647, y: -1.9979963}
+  - {x: -0.61905336, y: -2.0074081}
+  - {x: -0.23004162, y: -1.9846525}
+  - {x: -0.0011847168, y: -1.9970256}
   - {x: 2.0055063, y: -2.009829}
   - {x: 1.9996364, y: 2.9995623}
   m_AdjacentStartPoint: {x: 0, y: 0}
@@ -644,7 +653,7 @@ GameObject:
   - component: {fileID: 8855580407216847279}
   - component: {fileID: 6101970471695581448}
   m_Layer: 0
-  m_Name: Room000
+  m_Name: Room998Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,29 +689,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d48e4645bfcfee4f9aed988c2342632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  up: 1
-  down: 0
+  up: 0
+  down: 1
   left: 0
   right: 0
-  currentUpDoor: {fileID: 6101970469813773871}
-  currentDownDoor: {fileID: 0}
+  currentUpDoor: {fileID: 0}
+  currentDownDoor: {fileID: 6101970469813773871}
   currentLeftDoor: {fileID: 0}
   currentRightDoor: {fileID: 0}
-<<<<<<< HEAD
-=======
   upWall: {fileID: 0}
   downWall: {fileID: 0}
   leftWall: {fileID: 0}
   rightWall: {fileID: 0}
->>>>>>> origin/GenerateMap
   nextRoomDownDoor: {fileID: 0}
   nextRoomUpDoor: {fileID: 0}
   nextRoomRightDoor: {fileID: 0}
   nextRoomLeftDoor: {fileID: 0}
-<<<<<<< HEAD
-=======
   tilemap: {fileID: 0}
->>>>>>> origin/GenerateMap
 --- !u!1 &8855580407962585698
 GameObject:
   m_ObjectHideFlags: 0
