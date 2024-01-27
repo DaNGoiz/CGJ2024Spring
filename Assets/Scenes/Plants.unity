@@ -200,14 +200,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1258992506588247825, guid: e0ec56ed8836e354b80aa93069ce3831, type: 3}
-      propertyPath: angle
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1258992506588247825, guid: e0ec56ed8836e354b80aa93069ce3831, type: 3}
-      propertyPath: isTrible
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8636728938459793654, guid: e0ec56ed8836e354b80aa93069ce3831, type: 3}
       propertyPath: m_Name
       value: GhostFlower
@@ -313,10 +305,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
-    - target: {fileID: 7460629716751966710, guid: c3b66f17dd5f3bf4f8969151feeb4e6d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -508691623, guid: 1ce53bc192d17f64ca8b3eb37358a73f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b66f17dd5f3bf4f8969151feeb4e6d, type: 3}
 --- !u!1001 &7894018652893545970

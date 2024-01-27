@@ -125,3 +125,5 @@ MonoBehaviour:
   dirX: 0
   dirY: 0
   projPrefab: {fileID: 3955948856452564753, guid: 7dabe6e6d20b2d84c9e862d177d7a048, type: 3}
+  isTrible: 1
+  angle: 30
