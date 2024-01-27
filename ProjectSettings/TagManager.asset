@@ -16,6 +16,7 @@ TagManager:
   - 
   - Plant
   - 
+  - Player
   - 
   - 
   - Misc
@@ -25,6 +26,9 @@ TagManager:
   - 
   - 
   - 
+  - 
+  - 
+
   - Wall
   - 
   - 
@@ -49,4 +53,12 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 2944336173
+  - name: Facing
+    uniqueID: 4148886683
+    locked: 0
+  - name: ShootPt
+    uniqueID: 1705543187
+    locked: 0
+  - name: Player
+    uniqueID: 660160457
     locked: 0

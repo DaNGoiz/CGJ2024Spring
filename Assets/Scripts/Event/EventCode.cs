@@ -53,5 +53,13 @@
         /// 设置摄像机位置和旋转
         /// </summary>
         SetCameraPosAndRot
+        /// <summary>
+        /// 改变角色状态状态
+        /// </summary>
+        SwtichState,
+        /// <summary>
+        /// 改变砖块状态
+        /// </summary>
+        SwitchOrganState
     }
 }

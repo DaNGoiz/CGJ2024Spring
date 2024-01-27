@@ -58,6 +58,21 @@ namespace YSFramework
         /// <param name="arg1">载入场景模式</param>
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (arg0.name.Equals("Main"))
+            {
+                
+                //GameObject go= (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
+                //go.transform.position = Vector3.zero;
+                //print(go);
+            }
+            if (arg0.name.Equals("Menu"))
+            {
+
+                //GameObject go = (GameObject)EventCenter.Broadcast_Return<ResourceType, string>(EventCode.LoadResource, ResourceType.Model, "TestModel");
+                //EventCenter.Broadcast<UIPanelType, object>(EventCode.PushPanel, UIPanelType.Start, null);
+                //go.transform.position = Vector3.zero;
+                //print(go);
+            }
         }
     }
 }
