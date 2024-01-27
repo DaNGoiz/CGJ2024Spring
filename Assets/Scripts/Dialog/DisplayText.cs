@@ -19,8 +19,8 @@ using TMPro;
 public class DisplayText : MonoBehaviour
 {
     // UI component
-    private Text textLabel; // 使用 Text 组件而不是 TextMeshProUGUI
-    private Image faceImage;
+    public Text textLabel;
+    public Image faceImage;
 
     [Header("Text")]
     public TextAsset textFile;
@@ -40,8 +40,8 @@ public class DisplayText : MonoBehaviour
     void Awake()
     {
         // Get the UI components
-        textLabel = GetComponentInChildren<Text>(); // 获取 Text 组件
-        faceImage = GetComponentInChildren<Image>();
+        // textLabel = GetComponentInChildren<Text>();
+        // faceImage = GetComponentInChildren<Image>();
 
         GetTextFronFile(textFile); 
     }
@@ -55,13 +55,14 @@ public class DisplayText : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && currentLine == textList.Count)
+        if (Input.anyKeyDown && currentLine == textList.Count)
         {
             currentLine = 0;
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.anyKeyDown)
         {
             if (isTypingFinished && !cancelTyping)
             {
@@ -82,7 +83,11 @@ public class DisplayText : MonoBehaviour
         if (textFile != null)
         {
             string text = textFile.text;
-            textList = new List<string>(text.Split('\n'));
+            var lines = text.Split('\n');
+            foreach (var line in lines)
+            {
+                textList.Add(line.Trim()); // 使用 Trim() 移除多余的空白字符
+            }
         }
     }
 
@@ -90,17 +95,14 @@ public class DisplayText : MonoBehaviour
     {
         isTypingFinished = false;
         textLabel.text = "";
-         
-        // should be moved into a function
-        
-        switch(textList[currentLine])
+
+        switch (textList[currentLine])
         {
-            case "A":
+            case "A:":
                 faceImage.sprite = faceSprites[0];
                 currentLine++;
-                print("A");
                 break;
-            case "B":
+            case "B:":
                 faceImage.sprite = faceSprites[1];
                 currentLine++;
                 break;
