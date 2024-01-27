@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 public class LevelMapBuilder : MonoBehaviour
 {
     public GameObject initialRoom;
-    public GameObject lastRoom;
+    public List<GameObject> lastRooms;
     public List<GameObject> roomPrefabs;
 
     [Header("Room Config")]
@@ -18,6 +18,7 @@ public class LevelMapBuilder : MonoBehaviour
     public float transformPosition = 2f;
     public float roomTransformDistance = 10f;
     public GameObject currentRoom;
+    public GameObject teleport;
 
     private GameObject[,] roomArray = new GameObject[50, 50];
     private int currentRoomX = 25;
@@ -40,7 +41,7 @@ public class LevelMapBuilder : MonoBehaviour
         currentRoom = firstRoom;
         currentRoom.SetActive(true);
 
-        roomArray[25, 25] = currentRoom;
+        roomArray[25, 25] = initialRoom;
     }
 
     /// <summary>
@@ -52,14 +53,13 @@ public class LevelMapBuilder : MonoBehaviour
     /// 5. 把玩家传送到新房间
     /// </summary>
 
-    public GameObject nextRoomDoor; // debug
     public void OnDoorTriggered(GameObject door)
     {
-        if(currentRoomCount <= totalRoomCount)
+        if(currentRoomCount < totalRoomCount)
         {
             // 1. 检查当前方向是否已经绑定了下一个门
             Room currentRoomScript = currentRoom.GetComponent<Room>();
-            nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
+            GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
             if(nextRoomDoor == null)
             {
@@ -76,9 +76,10 @@ public class LevelMapBuilder : MonoBehaviour
             }
 
             // 5. 把玩家传送到新房间
-            MovePlayerToRoom(nextRoomDoor); // add camera movement
+            MovePlayerToRoom(nextRoomDoor);
 
             // 6. 检测是否被完全包围，如果是就重新开一个门，并生成最后一个房间
+            TestIfRoomIsSurrounded();
         }
         else
         {
@@ -192,7 +193,7 @@ public class LevelMapBuilder : MonoBehaviour
 
             GameObject currentRoomWall = currentRoomScript.GetCorrespondingWall(currentDoorDirection);
 
-            if(currentRoomDoor != null && nextRoomDoor != null && currentRoomWall.IsActive() == false)
+            if(currentRoomDoor != null && nextRoomDoor != null && !currentRoomWall.activeSelf)
             {
                 currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
                 nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
@@ -273,9 +274,26 @@ public class LevelMapBuilder : MonoBehaviour
         wall.GetComponent<Wall>().isNaturalWall = true;
     }
 
-    void BuildLastRoom(GameObject door)
+    public GameObject BuildLastRoom(GameObject door)
     {
+        Door.Direction oppositeDoorDirection = Door.GetOppositeDirection(door.GetComponent<Door>().doorDirection);
+        if(oppositeDoorDirection == Door.Direction.Up) return lastRooms[0];
+        else if(oppositeDoorDirection == Door.Direction.Down) return lastRooms[1];
+        else if(oppositeDoorDirection == Door.Direction.Left) return lastRooms[2];
+        else if(oppositeDoorDirection == Door.Direction.Right) return lastRooms[3];
+        else return null;
+    }
 
+    void TestIfRoomIsSurrounded()
+    {
+        if (roomArray[currentRoomX-1, currentRoomY-1] != null &&
+            roomArray[currentRoomX-1, currentRoomY+1] != null &&
+            roomArray[currentRoomX+1, currentRoomY-1] != null &&
+            roomArray[currentRoomX+1, currentRoomY+1] != null)
+        {
+            GameObject teleport = Instantiate(this.teleport, currentRoom.transform.position, Quaternion.identity);
+        }
+        
     }
 
     public void ActivateBannerWhenFight()

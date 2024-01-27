@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6101970469813773869}
   - component: {fileID: 565525792}
   m_Layer: 0
-  m_Name: DownDoor
+  m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6101970469813773871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -5.2, z: 0}
+  m_LocalPosition: {x: 4.93, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDirection: 1
+  doorDirection: 3
 --- !u!1 &6101970469971230725
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,16 +242,6 @@ Tilemap:
   m_GameObject: {fileID: 8855580406959856851}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -1, y: -3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -3, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -393,6 +383,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 1, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 2, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -628,10 +628,14 @@ EdgeCollider2D:
   - {x: -2.9895272, y: 2.9804783}
   - {x: -2.9972253, y: -1.998727}
   - {x: -1.0015647, y: -1.9979963}
-  - {x: -0.99960685, y: -2.9968474}
-  - {x: -0.0017094362, y: -2.9931192}
+  - {x: -0.6259345, y: -2.0315275}
+  - {x: -0.25082406, y: -1.9966607}
   - {x: -0.0011847168, y: -1.9970256}
   - {x: 2.0055063, y: -2.009829}
+  - {x: 2.003165, y: -0.011698318}
+  - {x: 2.988462, y: 0.009041131}
+  - {x: 2.9920616, y: 0.95421654}
+  - {x: 2.0019503, y: 1.0249518}
   - {x: 1.9996364, y: 2.9995623}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -648,7 +652,7 @@ GameObject:
   - component: {fileID: 8855580407216847279}
   - component: {fileID: 6101970471695581448}
   m_Layer: 0
-  m_Name: Room998
+  m_Name: Room998Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
