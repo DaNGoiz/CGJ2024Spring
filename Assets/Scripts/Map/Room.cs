@@ -99,19 +99,19 @@ public class Room : MonoBehaviour
     {
         if(direction == Door.Direction.Up)
         {
-            tilemap.SetTile(new Vector3Int(-1, 5, 0), null);
+            tilemap.SetTile(new Vector3Int(-1, 9, 0), null);
         }
         else if(direction == Door.Direction.Down)
         {
-            tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
+            tilemap.SetTile(new Vector3Int(-1, -8, 0), null);
         }
         else if(direction == Door.Direction.Left)
         {
-            tilemap.SetTile(new Vector3Int(-12, 0, 0), null);
+            tilemap.SetTile(new Vector3Int(-14, 0, 0), null);
         }
         else if(direction == Door.Direction.Right)
         {
-            tilemap.SetTile(new Vector3Int(10, 0, 0), null);
+            tilemap.SetTile(new Vector3Int(12, 0, 0), null);
         }
     }
 }
