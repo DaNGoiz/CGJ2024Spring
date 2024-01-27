@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
     }
     protected virtual void Update()
     {
-        rb.velocity = direction * speed;
+        if (rb != null)
+            rb.velocity = direction * speed;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collider) { }
 }

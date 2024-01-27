@@ -9,14 +9,27 @@ public class Mushroom : Plant
 {
     [SerializeField]
     private float atkCooldown;
+    [SerializeField]
+    private bool isTrigger;
+    [SerializeField]
+    private GameObject blastPrefab;
+    [SerializeField]
+    private Animator animator;
+    private int detectCooldown = 5;
     private void Start()
     {
+        warningTime = 1.9f;
         autoAttackTimerName = TimerInstance.CreateCommonTimer("Mushroom");
-        SwitchMode(AttackMode.Trigger);
+        if (isTrigger)
+            SwitchMode(AttackMode.Trigger);
         FaceTo(Vector2.right, false);
     }
     private void Update()
     {
+        if (isTrigger && --detectCooldown <= 0 && DetectPlayer(1.5f, out _))
+        {
+            TriggerAttack();
+        }
         if(TimerInstance.GetTime(autoAttackTimerName) >= atkCooldown)
             TimerInstance.ResetTimer(autoAttackTimerName);
     }
@@ -25,7 +38,27 @@ public class Mushroom : Plant
         if(TimerInstance.GetTime(autoAttackTimerName) == 0)
         {
             TimerInstance.StartTimer(autoAttackTimerName);
-            //Attack();
-        }    
+            StartCoroutine(WarnAndAttack());
+        }
+
+        IEnumerator WarnAndAttack()
+        {
+            WarningArea.CreateCircleArea(transform.position, 1.5f, warningTime);
+            yield return new WaitForSeconds(1.5f);
+            animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(0.4f);
+            Attack(blastPrefab, Vector2.zero, 1f, new object[] { 1.5f });
+        }
+    }
+    private bool DetectPlayer(float radius, out GameObject player)
+    {
+        Collider2D col = Physics2D.OverlapCircle(transform.position, radius, LayerMask.GetMask(LayerName.Player));
+        if (col != null)
+        {
+            player = col.gameObject;
+            return true;
+        }
+        player = null;
+        return false;
     }
 }
