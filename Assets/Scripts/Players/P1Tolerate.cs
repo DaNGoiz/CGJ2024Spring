@@ -13,7 +13,7 @@ public class P1Tolerate : MonoBehaviour
     private bool laughing;
     static public bool[] phaseP1;//憋笑阶段,转阶段了吗
     static public float tolerateBarP1;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +36,8 @@ public class P1Tolerate : MonoBehaviour
     void TolerateLaugh()//憋笑条的控制，憋憋
     {
         //当抖动幅度变化时仅一次重置位置
-        bool shake30=true, shake50 = true, shake70 = true, shake90 = true;
-        if(!laughing)
+        bool shake30 = true, shake50 = true, shake70 = true, shake90 = true;
+        if (!laughing)
         {
             //消减条
             if (Player1CTRL.movingP1)
@@ -59,7 +59,7 @@ public class P1Tolerate : MonoBehaviour
             {
                 shakePos = new Vector2(0, 0);
                 transform.localPosition = shakePos;
-                shake30=shake50 = shake70 = shake90 = true;//恢复正常时使得下一次抖动能重置位置
+                shake30 = shake50 = shake70 = shake90 = true;//恢复正常时使得下一次抖动能重置位置
                 for (int i = phaseP1.Length - 1; i >= 0; i--)
                 {
                     phaseP1[i] = false;
@@ -112,7 +112,7 @@ public class P1Tolerate : MonoBehaviour
                 shakePos.x += 0.15f * Mathf.Sin(shakeTime * 100);
                 transform.localPosition = shakePos;
             }
-            else if(tolerateBarP1>100)
+            else if (tolerateBarP1 > 100)
             {
                 laughing = true;
                 tolerateBarP1 = 100;
@@ -128,6 +128,5 @@ public class P1Tolerate : MonoBehaviour
         {
             tolerateBarP1 = 100;
         }
-
     }
 }

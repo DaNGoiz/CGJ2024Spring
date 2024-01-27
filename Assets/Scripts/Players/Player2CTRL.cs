@@ -57,22 +57,6 @@ public class Player2CTRL : PlayerCTRL
 
         }
     }
-
-    /// <summary>
-    /// 状态移动
-    /// </summary>
-    /// <param name="_moving">true为正在移动，false为静止</param>
-    static public void MovingP2(bool _moving)
-    {
-        if (_moving)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
