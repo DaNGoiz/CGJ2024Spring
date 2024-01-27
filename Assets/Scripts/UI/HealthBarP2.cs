@@ -32,14 +32,14 @@ public class HealthBarP2 : MonoBehaviour
         {
             Transform emptyHP = healthBar.Pop();
             UnityEngine.UI.Image hpImg = emptyHP.GetComponent<UnityEngine.UI.Image>();
-            hpImg.sprite = Resources.Load<Sprite>("Images/UI/P2Damage");
+            hpImg.sprite = Resources.Load<Sprite>("UIPlayer/P2Damage");
         }
         while (P2Life.lifeP2 > healthBar.Count)//加血
         {
             int currHP = healthBar.Count;
             Transform fullHP = transform.GetChild(currHP);
             UnityEngine.UI.Image fullImg = fullHP.GetComponent<UnityEngine.UI.Image>();
-            fullImg.sprite = Resources.Load<Sprite>("Images/UI/P2Health");
+            fullImg.sprite = Resources.Load<Sprite>("UIPlayer/P2Health");
             healthBar.Push(fullHP);
         }
     }

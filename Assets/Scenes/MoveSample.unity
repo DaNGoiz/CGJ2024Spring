@@ -2373,6 +2373,7 @@ GameObject:
   - component: {fileID: 863858783}
   - component: {fileID: 863858784}
   - component: {fileID: 863858785}
+  - component: {fileID: 863858786}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -2480,6 +2481,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &863858786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863858781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16e06426c241e948b72a9af2a131df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!1 &908130815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,6 +2732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158291329}
   - component: {fileID: 1158291330}
+  - component: {fileID: 1158291331}
   m_Layer: 5
   m_Name: P2HP
   m_TagString: Untagged
@@ -2767,6 +2782,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e907789b70d246c47aec6252025b8cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1158291331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158291328}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8ac7a994dabcc47ab4548429474d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 0
 --- !u!1 &1179429580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3893,7 +3921,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687618259}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b4d2a1f2ecd8004b821893abcbbd6d1, type: 3}
   m_Name: 
@@ -3989,7 +4017,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

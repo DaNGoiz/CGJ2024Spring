@@ -10,8 +10,8 @@ public class P1Tolerate : MonoBehaviour
 
     //NoSF
     float shakeTime;
-
     private bool laughing;
+    static public int phaseP1;
     static public float tolerateBarP1;
     
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class P1Tolerate : MonoBehaviour
             {
                 shakePos = new Vector2(0, 0);
                 transform.localPosition = shakePos;
-                shake50 = shake70 = shake90 = true;//恢复正常时使得下一次抖动能重置位置
+                shake30=shake50 = shake70 = shake90 = true;//恢复正常时使得下一次抖动能重置位置
             }
             else if (tolerateBarP1 < 50)//>30
             {
@@ -97,7 +97,7 @@ public class P1Tolerate : MonoBehaviour
                     transform.localPosition = shakePos = new Vector2(0, 0);
                     shake50 = false;
                 }
-                shakePos.x += 0.5f * Mathf.Sin(shakeTime * 100);
+                shakePos.x += 0.4f * Mathf.Sin(shakeTime * 100);
                 transform.localPosition = shakePos;
             }
             else if(tolerateBarP1>100)

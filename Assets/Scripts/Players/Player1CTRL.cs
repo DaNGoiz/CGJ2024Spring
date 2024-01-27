@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public class Player1CTRL : MonoBehaviour
+public class Player1CTRL : PlayerCTRL
 {
     //with SF
     #region SF
@@ -28,6 +28,8 @@ public class Player1CTRL : MonoBehaviour
     private Transform shootPoint;
     static public bool movingP1;
     static public bool laughTriggerP1;
+    static public FaceDir faceDirP1;
+
     #endregion
     /// <summary>
     /// 状态转换：是否移动
@@ -91,6 +93,7 @@ public class Player1CTRL : MonoBehaviour
                 Vector2 facePos = facing.position;
                 facePos.y += speed * 10 * Time.deltaTime;
                 facing.position = facePos;
+                faceDirP1 = FaceDir.back;
             }
             pos.y += speed * Time.deltaTime;
         }
@@ -102,6 +105,7 @@ public class Player1CTRL : MonoBehaviour
                 Vector2 facePos = facing.position;
                 facePos.y -= speed * 10 * Time.deltaTime;
                 facing.position = facePos;
+                faceDirP1 = FaceDir.front;
             }
             pos.y -= speed * Time.deltaTime;
         }
@@ -113,10 +117,11 @@ public class Player1CTRL : MonoBehaviour
                 Vector2 facePos = facing.position;
                 facePos.x -= speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                if (facing.localPosition.x < 0)
-                {
-                    playerSprite.flipX = true;
-                }
+                // if (facing.localPosition.x < 0)
+                // {
+                //     playerSprite.flipX = true;
+                // }
+                faceDirP1 = FaceDir.left;
             }
             pos.x -= speed * Time.deltaTime;
         }
@@ -128,10 +133,11 @@ public class Player1CTRL : MonoBehaviour
                 Vector2 facePos = facing.position;
                 facePos.x += speed * 10 * Time.deltaTime;
                 facing.position = facePos;
-                if (facing.localPosition.x > 0)
-                {
-                    playerSprite.flipX = false;
-                }
+                // if (facing.localPosition.x > 0)
+                // {
+                //     playerSprite.flipX = false;
+                // }
+                faceDirP1 = FaceDir.right;
             }
             pos.x += speed * Time.deltaTime;
         }

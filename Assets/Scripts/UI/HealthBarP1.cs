@@ -34,14 +34,14 @@ public class HealthBarP1 : MonoBehaviour
         {
             Transform emptyHP = healthBar.Pop();
             UnityEngine.UI.Image hpImg = emptyHP.GetComponent<UnityEngine.UI.Image>();
-            hpImg.sprite = Resources.Load<Sprite>("Images/UI/P1Damage");
+            hpImg.sprite = Resources.Load<Sprite>("UIPlayer/P1Damage");
         }
         while (P1Life.lifeP1 > healthBar.Count)//加血
         {
             int currHP = healthBar.Count;
             Transform fullHP = transform.GetChild(currHP);
             UnityEngine.UI.Image fullImg = fullHP.GetComponent<UnityEngine.UI.Image>();
-            fullImg.sprite = Resources.Load<Sprite>("Images/UI/P1Health");
+            fullImg.sprite = Resources.Load<Sprite>("UIPlayer/P1Health");
             healthBar.Push(fullHP);
         }
     }
