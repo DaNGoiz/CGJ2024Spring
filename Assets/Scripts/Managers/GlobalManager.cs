@@ -30,6 +30,7 @@ namespace YSFramework
                 gameObject.AddComponent<UIManager>();
                 gameObject.AddComponent<CommunicationManager>();
                 gameObject.AddComponent<SqlManager>();
+                gameObject.AddComponent<GameManager>();
                 DontDestroyOnLoad(this.gameObject);
                 SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }

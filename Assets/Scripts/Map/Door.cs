@@ -7,8 +7,7 @@ public class Door : MonoBehaviour
         Up,
         Down,
         Left,
-        Right,
-        Null,
+        Right
     }
 
     public Direction doorDirection;
@@ -38,11 +37,5 @@ public class Door : MonoBehaviour
             default:
                 return Direction.Up;
         }
-    }
-
-    public static void SetDoorDirection(GameObject door, Direction direction)
-    {
-        Door doorScript = door.GetComponent<Door>();
-        doorScript.doorDirection = direction;
     }
 }

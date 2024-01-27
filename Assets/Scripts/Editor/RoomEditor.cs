@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Tilemaps;
 
 [CustomEditor(typeof(Room))]
 public class RoomEditor : Editor
@@ -18,14 +17,6 @@ public class RoomEditor : Editor
         {
             EditorUtility.SetDirty(room);
         }
-
-        room.upWall = (GameObject)EditorGUILayout.ObjectField("Up Wall", room.upWall, typeof(GameObject), true);
-        room.downWall = (GameObject)EditorGUILayout.ObjectField("Down Wall", room.downWall, typeof(GameObject), true);
-        room.leftWall = (GameObject)EditorGUILayout.ObjectField("Left Wall", room.leftWall, typeof(GameObject), true);
-        room.rightWall = (GameObject)EditorGUILayout.ObjectField("Right Wall", room.rightWall, typeof(GameObject), true);
-
-        room.tilemap = (Tilemap)EditorGUILayout.ObjectField("Tilemap", room.tilemap, typeof(Tilemap), true);
-
     }
 
     private void DrawDoorField(string label, ref bool doorBool, ref GameObject currentDoor, ref GameObject nextDoor)
