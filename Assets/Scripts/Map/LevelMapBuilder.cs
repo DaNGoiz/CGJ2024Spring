@@ -8,6 +8,12 @@ public class LevelMapBuilder : MonoBehaviour
     public GameObject lastRoom;
     public List<GameObject> roomPrefabs;
 
+    [Header("Room Config")]
+    public int minRoomCount = 8;
+    public int maxRoomCount = 14;
+    public int totalRoomCount = 0;
+    public int currentRoomCount = 0;
+
     [Header("Transform")]
     public float transformPosition = 2f;
     public float roomTransformDistance = 10f;
@@ -20,6 +26,9 @@ public class LevelMapBuilder : MonoBehaviour
 
     void Start()
     {
+        // 0. 随机房间数量
+        totalRoomCount = Random.Range(minRoomCount, maxRoomCount);
+
         GameObject firstRoom = Instantiate(initialRoom);
         GameObject roomsParent = GameObject.Find("Rooms");
         if (roomsParent == null)
@@ -35,6 +44,7 @@ public class LevelMapBuilder : MonoBehaviour
     }
 
     /// <summary>
+    /// 0. 随机房间数量
     /// 1. 检查当前方向是否已经绑定了下一个门
     /// 2. 如果没有绑定，随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
     /// 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
@@ -45,28 +55,36 @@ public class LevelMapBuilder : MonoBehaviour
     public GameObject nextRoomDoor; // debug
     public void OnDoorTriggered(GameObject door)
     {
-        // 1. 检查当前方向是否已经绑定了下一个门
-        Room currentRoomScript = currentRoom.GetComponent<Room>();
-        nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
-
-        if(nextRoomDoor == null)
+        if(currentRoomCount <= totalRoomCount)
         {
-            // 2. 如果没有绑定，随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
-            // 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
-            nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection, door);
-            // 4. 跳转到新房间，检查在四个方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
-            CheckRoomDoorsBinding(currentRoom);
+            // 1. 检查当前方向是否已经绑定了下一个门
+            Room currentRoomScript = currentRoom.GetComponent<Room>();
+            nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
+
+            if(nextRoomDoor == null)
+            {
+                // 2. 如果没有绑定，随机选择一个房间，检查是否有反方向的门，如果没有，就重新生成
+                // 3. 如果有，就生成房间，将其加入对应方向的房间数组，并把当前房间赋值给它
+                nextRoomDoor = SelectNextRoom(door.GetComponent<Door>().doorDirection, door);
+                // 4. 跳转到新房间，检查在四个方向是否有对应的房间，如果有，并双方房间都有对应方向的门，就互相绑定门，否则就生成墙
+                CheckRoomDoorsBinding(currentRoom);
+            }
+            else
+            {
+                // 寻找nextRoomDoor对应的房间，并把currentRoom赋值给它
+                currentRoom = GetRoomInDirection(door.GetComponent<Door>().doorDirection); // think it's not working
+            }
+
+            // 5. 把玩家传送到新房间
+            MovePlayerToRoom(nextRoomDoor); // add camera movement
+
+            // 6. 检测是否被完全包围，如果是就重新开一个门，并生成最后一个房间
         }
         else
         {
-            // 寻找nextRoomDoor对应的房间，并把currentRoom赋值给它
-            currentRoom = GetRoomInDirection(door.GetComponent<Door>().doorDirection); // think it's not working
+            BuildLastRoom(door);
         }
-
-        // 5. 把玩家传送到新房间
-        MovePlayerToRoom(nextRoomDoor); // add camera movement
-
-        // 6. 检测是否被完全包围，如果是就重新开一个门，并生成最后一个房间
+        
     }
 
     // return nextRoomDoor
@@ -88,6 +106,7 @@ public class LevelMapBuilder : MonoBehaviour
                 Debug.Log("Warning: Room already exists, but new room still added");
             }
             currentRoom = nextRoom;
+            currentRoomCount++;
             return nextRoomScript.GetCorrespondingDoor(Door.GetOppositeDirection(currentDoorDirection));
         }
         else
@@ -171,7 +190,9 @@ public class LevelMapBuilder : MonoBehaviour
             GameObject currentRoomDoor = currentRoomScript.GetCorrespondingDoor(currentDoorDirection);
             GameObject nextRoomDoor = nextRoomScript.GetCorrespondingDoor(nextDoorDirection);
 
-            if(currentRoomDoor != null && nextRoomDoor != null)
+            GameObject currentRoomWall = currentRoomScript.GetCorrespondingWall(currentDoorDirection);
+
+            if(currentRoomDoor != null && nextRoomDoor != null && currentRoomWall.IsActive() == false)
             {
                 currentRoomScript.BindDoor(currentDoorDirection, nextRoomDoor);
                 nextRoomScript.BindDoor(nextDoorDirection, currentRoomDoor);
@@ -243,36 +264,18 @@ public class LevelMapBuilder : MonoBehaviour
     // This method is called when building the room
     public void RemoveDoorAndAddWall(Door.Direction direction)
     {
-        // 1. remove door component + grid
-        // Tilemap tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
-        // GameObject door = currentRoom.GetComponent<Room>().GetCorrespondingDoor(direction);
-        // Door.SetDoorDirection(door, Door.Direction.Null);
-
-        // if(direction == Door.Direction.Up)
-        // {
-        //     // 将tilemap里(-1,5,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, 5, 0), null);
-        // }
-        // else if(direction == Door.Direction.Down)
-        // {
-        //     // 将tilemap里(-1,-5,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-1, -5, 0), null);
-        // }
-        // else if(direction == Door.Direction.Left)
-        // {
-        //     // 将tilemap里(-12,0,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(-12, 0, 0), null);
-        // }
-        // else if(direction == Door.Direction.Right)
-        // {
-        //     // 将tilemap里(10,0,0)位置的tile变为空
-        //     GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(new Vector3Int(10, 0, 0), null);
-        // }
+        // 1. remove grid
+        currentRoom.GetComponent<Room>().RemoveTileInDirection(direction);
 
         // 2. activate wall
         GameObject wall = currentRoom.GetComponent<Room>().GetCorrespondingWall(direction);
         wall.SetActive(true);
         wall.GetComponent<Wall>().isNaturalWall = true;
+    }
+
+    void BuildLastRoom(GameObject door)
+    {
+
     }
 
     public void ActivateBannerWhenFight()

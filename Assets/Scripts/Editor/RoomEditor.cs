@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Tilemaps;
 
 [CustomEditor(typeof(Room))]
 public class RoomEditor : Editor
@@ -22,6 +23,8 @@ public class RoomEditor : Editor
         room.downWall = (GameObject)EditorGUILayout.ObjectField("Down Wall", room.downWall, typeof(GameObject), true);
         room.leftWall = (GameObject)EditorGUILayout.ObjectField("Left Wall", room.leftWall, typeof(GameObject), true);
         room.rightWall = (GameObject)EditorGUILayout.ObjectField("Right Wall", room.rightWall, typeof(GameObject), true);
+
+        room.tilemap = (Tilemap)EditorGUILayout.ObjectField("Tilemap", room.tilemap, typeof(Tilemap), true);
 
     }
 
