@@ -25,11 +25,10 @@ public class Projectile : MonoBehaviour
     /// <param name="dir">方向</param>
     /// <param name="rotation">朝向</param>
     /// <param name="speed">射弹飞行速度</param>
-    public virtual void Launch(Vector2 start, Vector2 dir, Vector2 rotation, float speed)
+    public virtual void Launch(Vector2 start, Vector2 dir, float speed, params object[] args)
     {
         transform.position = start;
         direction = dir.normalized;
-        transform.rotation = Quaternion.Euler(rotation);
         this.speed = speed;
     }
     protected virtual void Awake()

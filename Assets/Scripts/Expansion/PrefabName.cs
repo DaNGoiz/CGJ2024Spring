@@ -7,6 +7,8 @@ public struct PrefabName
     public const string SporeBullet = "SporeBullet";
     public const string ToxicFumes = "ToxicFumes";
     public const string SpittingMelon = "SpittingMelon";
+    public const string GhostFlower = "GhostFlower";
+    public const string BoxWarningArea = "BoxWarningArea";
 }
 
 public struct SpriteName

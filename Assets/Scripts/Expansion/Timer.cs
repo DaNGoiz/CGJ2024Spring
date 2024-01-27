@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YSFramework;
+using static YSFramework.GlobalManager;
 
 /// <summary>
 /// 挂载在全局Manager上工作的计时器
@@ -16,13 +17,15 @@ public class Timer : MonoBehaviour
     /// 创建一个常规计时器
     /// </summary>
     /// <param name="name">计时器的名字</param>
-    /// <returns>是否创建成功</returns>
-    public bool CreateCommonTimer(string name)
+    /// <returns>计时器的准确名称</returns>
+    public string CreateCommonTimer(string name)
     {
-        if (ContainCommonTimer(name))
-            return false;
-        commonTimers.Add(name, new InnerTimer());
-        return true;
+        do
+        {
+            name += UnityEngine.Random.Range(0, 100);
+        } while (ContainCommonTimer(name));
+        commonTimers.Add(name, new InnerTimer() { name = name });
+        return name;
     }
     /// <summary>
     /// 创建一个带事件的计时器，计时超过阈值会自动触发事件。默认情况下触发后计时器自动重新开始计时
@@ -32,13 +35,15 @@ public class Timer : MonoBehaviour
     /// <param name="timerEvent">要触发的事件</param>
     /// <param name="eventArgs">传入触发事件的参数</param>
     /// <param name="isAutoReset">计时结束后是否自动重新开始计时</param>
-    /// <returns></returns>
-    public bool CreateEventTimer(string name, float threshold, Action<object[]> timerEvent, object[] eventArgs, bool isAutoReset = true)
+    /// <returns>计时器的准确名称</returns>
+    public string CreateEventTimer(string name, float threshold, Action<object[]> timerEvent, object[] eventArgs, bool disposeSelf, bool isAutoReset = true)
     {
-        if (ContainEventTimer(name))
-            return false;
-        eventTimers.Add(name, new EventTimer(threshold, timerEvent, eventArgs, isAutoReset));
-        return true;
+        do
+        {
+            name += UnityEngine.Random.Range(0, 100);
+        } while (ContainEventTimer(name));
+        eventTimers.Add(name, new EventTimer(threshold, timerEvent, eventArgs, disposeSelf, isAutoReset) { name = name });
+        return name;
     }
     /// <summary>
     /// 销毁计时器
@@ -122,6 +127,7 @@ public class Timer : MonoBehaviour
     }
     private class InnerTimer
     {
+        public string name;
         /// <summary>
         /// 计时器是否正在运行
         /// </summary>
@@ -149,6 +155,7 @@ public class Timer : MonoBehaviour
     }
     private class EventTimer
     {
+        public string name;
         /// <summary>
         /// 计时器是否正在运行
         /// </summary>
@@ -169,6 +176,11 @@ public class Timer : MonoBehaviour
                 if (runningTime >= threshold)
                 {
                     timerEvent.Invoke(timerArgs);
+                    if (disposeSelf)
+                    {
+                        TimerInstance.RemoveTimer(name);
+                        return;
+                    }
                     if (isAutoStart)
                         ResetTimer(true);
                     else
@@ -179,8 +191,9 @@ public class Timer : MonoBehaviour
         public float threshold;
         private Action<object[]> timerEvent;
         private object[] timerArgs;
+        private bool disposeSelf;
         private bool isAutoStart;
-        public EventTimer(float threshold, Action<object[]> timerEvent, object[] eventArgs, bool isAutoStart)
+        public EventTimer(float threshold, Action<object[]> timerEvent, object[] eventArgs, bool disposeSelf, bool isAutoStart)
         {
             this.threshold = threshold;
             this.timerEvent = timerEvent;

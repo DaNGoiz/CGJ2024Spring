@@ -37,5 +37,9 @@
         /// 孢子和毒雾等投射物
         /// </summary>
         Projectile,
+        /// <summary>
+        /// 杂项
+        /// </summary>
+        Misc
     }
 }

@@ -7,23 +7,26 @@ using static YSFramework.GlobalManager;
 public class SpittingMelon : Plant
 {
     [SerializeField]
-    private Vector2 firePosUp;
-    [SerializeField]
-    private Vector2 firePosDown;
-    [SerializeField]
-    private Vector2 firePosLeft;
-    [SerializeField]
-    private Vector2 firePosRight;
-    [SerializeField]
+    private int attackRange;
     private GameObject projPrefab;
+    protected override void Warning(float time)
+    {
+        WarningArea.CreateBoxArea((Vector2)transform.position + attackDirection.normalized / 2f + Vector2.up / 2f, attackDirection, attackRange, time);
+        TimerInstance.StartTimer(TimerInstance.CreateEventTimer("SetAnimArg", time - 2f / 3f, SetAnimArg, null, true, false));
+        void SetAnimArg(object[] _)
+        {
+            m_animator.SetTrigger("Attack");
+        }
+    }
+    private void Awake()
+    {
+        attackDirection = Vector2.left;
+    }
     private void Start()
     {
-        //生成一个随机不重复名字作为计时器名
-        do
-            timerName = "SpittingMelon" + Random.Range(0f, 100f);
-        while (!TimerInstance.CreateCommonTimer(timerName));
+        timerName = TimerInstance.CreateCommonTimer("SpittingMelon");
         SwitchMode(AttackMode.Auto);
-        FaceTo(1, 0);
+        FaceTo(attackDirection);
         projPrefab = (GameObject)ExtensionTools.LoadResource(ResourceType.Projectile, PrefabName.ToxicFumes);
     }
     private void Update()
@@ -31,8 +34,16 @@ public class SpittingMelon : Plant
         if (m_AttackMode == AttackMode.Auto)
             if (TimerInstance.GetTime(timerName) >= atkInterval)
             {
-                Attack(projPrefab, new Vector2(-2, -1), new Vector2(-1, 0), 1.5f).transform.parent = transform;
-                TimerInstance.ResetTimer(timerName, startImmediately: true);
+                StartCoroutine(WarnAndAttack(warningTime));
+                TimerInstance.ResetTimer(timerName);
             }
+        IEnumerator WarnAndAttack(float time)
+        {
+            Warning(time);
+            yield return new WaitForSeconds(time);
+            object[] args = new object[] { 10 };
+            Attack(projPrefab, attackDirection, 1.5f, attackDirection.normalized / 2f + Vector2.up / 2f, args).transform.parent = transform;
+            TimerInstance.StartTimer(timerName);
+        }
     }
 }

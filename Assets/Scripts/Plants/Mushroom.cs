@@ -11,12 +11,9 @@ public class Mushroom : Plant
     private float atkCooldown;
     private void Start()
     {
-        //生成一个随机不重复名字作为计时器名
-        do
-            timerName = "Mushroom" + Random.Range(0f, 100f);
-        while (!TimerInstance.CreateCommonTimer(timerName));
+        timerName = TimerInstance.CreateCommonTimer("Mushroom");
         SwitchMode(AttackMode.Trigger);
-        FaceTo(1, 0, false);
+        FaceTo(Vector2.right, false);
     }
     private void Update()
     {

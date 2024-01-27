@@ -12,26 +12,28 @@ public class ToxicFumes : Projectile
     private Sprite[] fumeSprites;
     private void RecycleProj(object[] args)
     {
-        TimerInstance.RemoveTimer(args[0].ToString());
         foreach (ToxicFumes childComp in transform.parent.GetComponentsInChildren<ToxicFumes>())
-        {
             StartCoroutine(Disappear(childComp.gameObject));
-        }
-        StartCoroutine(DelayRecycle());
+        if (isActiveAndEnabled)
+            StartCoroutine(DelayRecycle());
     }
-    public override void Launch(Vector2 start, Vector2 dir, Vector2 rotation, float speed)
+    public override void Launch(Vector2 start, Vector2 dir, float speed, params object[] values)
     {
-        string recycleProjTimerName;
-        object[] args = new object[1];
-        do
+        int maxDistance = 10;
+        try
         {
-            recycleProjTimerName = "ToxicFumesRecycleProj" + Random.Range(0f, 100f);
-            args[0] = recycleProjTimerName;
+            if (values != null && values.Length > 0)
+                maxDistance = (int)values[0];
         }
-        while (!TimerInstance.CreateEventTimer(recycleProjTimerName, 1, RecycleProj, args));
+        catch (UnityException e)
+        {
+            Debug.LogWarning(e.ToString());
+        }
+
+        string recycleProjTimerName = TimerInstance.CreateEventTimer("RecycleProj", 1, RecycleProj, null, true, false);
         TimerInstance.StartTimer(recycleProjTimerName);
 
-        base.Launch(start, dir, rotation, speed);
+        base.Launch(start, dir, speed);
 
         foreach (SpriteRenderer sp in GetComponentsInChildren<SpriteRenderer>())
         {
@@ -40,12 +42,14 @@ public class ToxicFumes : Projectile
 
         transform.rotation = Quaternion.identity;
         transform.Rotate(0, 0, Vector3.SignedAngle(Vector2.right, dir, Vector3.forward));
-        StartCoroutine(Spread(dir, speed, 10, 1));
+        StartCoroutine(Spread(dir, speed, maxDistance, 1));
     }
     private IEnumerator Spread(Vector2 dir,float speed, int maxSpreadingDistance, int spreadingCount)
     {
+        GenerateParticle();
         if (spreadingCount >= maxSpreadingDistance)
             yield break;
+
 
         Vector2 next = (Vector2)transform.position + dir.normalized;
         RaycastHit2D[] hits = Physics2D.RaycastAll(next, Vector2.zero);
@@ -53,11 +57,10 @@ public class ToxicFumes : Projectile
         {
             foreach (RaycastHit2D hit in hits)
             {
-                //撞到墙就停止蔓延
+                if (hit.collider.gameObject.layer == LayerMask.GetMask(LayerName.Wall))
+                    yield break;
             }
         }
-
-        GenerateParticle();
 
         yield return new WaitForSeconds(0.01f / speed);
         GameObject nextObj = ObjPool.RequestObject(gameObject);
@@ -71,34 +74,36 @@ public class ToxicFumes : Projectile
         {
             foreach (GameObject go in fumes)
             {
+                Color color = go.GetComponent<SpriteRenderer>().color;
+                color.a = 1;
+                go.GetComponent<SpriteRenderer>().color = color;
                 if (Random.Range(1, 10) < 8)
                 {
                     go.SetActive(true);
-                    SpriteRenderer sp = go.GetComponent<SpriteRenderer>();
-                    sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1);
                     go.GetComponent<SpriteRenderer>().sprite = fumeSprites[Random.Range(0, 2)];
-                    StartCoroutine(ParticleMove(go));
+                    StartCoroutine(ParticleMove(go, dir));
                 }
                 else
                     go.SetActive(false);
             }
-            IEnumerator ParticleMove(GameObject particle)
-            {
-                particle.transform.localPosition = new Vector2(Random.Range(-0.5f, 0.2f), Random.Range(-0.5f, 0.5f));
-                particle.transform.Rotate(0, 0, Random.Range(0f, 360f));
-                float randomRotate = Random.Range(360, 1080);
-                Quaternion rotationDes = particle.transform.localRotation * Quaternion.AngleAxis(randomRotate, Vector3.forward);
-                Vector2 moveStart = (Vector2)particle.transform.position;
-                Vector2 moveDes = moveStart + dir.normalized * Random.Range(0.4f, 1.8f);
-                Vector2 currentVelocity = Vector2.zero;
-                do
-                {
-                    particle.transform.localRotation = Quaternion.Slerp(particle.transform.localRotation, rotationDes, 0.02f);
-                    particle.transform.position  = Vector2.SmoothDamp(particle.transform.position, moveDes, ref currentVelocity, 0.8f);
-                    yield return null;
-                } while ((moveDes - (Vector2)particle.transform.position).sqrMagnitude > 0.05f);
-            }
         }
+    }
+    private IEnumerator ParticleMove(GameObject particle, Vector2 dir)
+    {
+        particle.transform.localPosition = new Vector2(Random.Range(-0.5f, 0.2f), Random.Range(-0.35f, 0.35f));
+        particle.transform.Rotate(0, 0, Random.Range(0f, 360f));
+        float randomRotate = Random.Range(360, 1080);
+        Quaternion rotationDes = particle.transform.localRotation * Quaternion.AngleAxis(randomRotate, Vector3.forward);
+        Vector2 moveStart = (Vector2)particle.transform.position;
+        Vector2 moveDes = moveStart + dir.normalized * Random.Range(0.4f, 1.8f);
+        Vector2 currentVelocity = Vector2.zero;
+        SpriteRenderer sp = particle.GetComponent<SpriteRenderer>();
+        do
+        {
+            particle.transform.localRotation = Quaternion.Slerp(particle.transform.localRotation, rotationDes, 0.02f);
+            particle.transform.position = Vector2.SmoothDamp(particle.transform.position, moveDes, ref currentVelocity, 0.8f);
+            yield return null;
+        } while ((moveDes - (Vector2)particle.transform.position).sqrMagnitude > 0.05f);
     }
     /// <summary>
     /// 令所有弹幕精灵图在0.5秒内渐变消失
@@ -126,7 +131,7 @@ public class ToxicFumes : Projectile
     }
     private IEnumerator DelayRecycle()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.9f);
         foreach (ToxicFumes childComp in transform.parent.GetComponentsInChildren<ToxicFumes>())
         {
             ObjPool.RecycleObject(childComp.gameObject);
@@ -134,6 +139,6 @@ public class ToxicFumes : Projectile
     }
     protected override void Update()
     {
-
+        //Do nothing
     }
 }

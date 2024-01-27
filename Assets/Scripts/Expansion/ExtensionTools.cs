@@ -79,6 +79,9 @@ namespace YSFramework
                 case ResourceType.Projectile:
                     o = Resources.Load<GameObject>("Projectiles/" + objectName);
                     break;
+                case ResourceType.Misc:
+                    o = Resources.Load<GameObject>("Misc/" + objectName);
+                    break;
                 default:
                     break;
             }
