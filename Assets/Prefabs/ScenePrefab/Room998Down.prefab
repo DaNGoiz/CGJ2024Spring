@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6101970469813773871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -5.2, z: 0}
+  m_LocalPosition: {x: 0.08, y: -7.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6101970469813773871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fd16787aff05447be0a257212cbfa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 04e462c8b32aa2541a35a32857edfd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 1
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 8855580407216847279}
   - component: {fileID: 6101970471695581448}
   m_Layer: 0
-  m_Name: Room998
+  m_Name: Room998Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,10 +692,15 @@ MonoBehaviour:
   currentDownDoor: {fileID: 6101970469813773871}
   currentLeftDoor: {fileID: 0}
   currentRightDoor: {fileID: 0}
+  upWall: {fileID: 0}
+  downWall: {fileID: 0}
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
   nextRoomDownDoor: {fileID: 0}
   nextRoomUpDoor: {fileID: 0}
   nextRoomRightDoor: {fileID: 0}
   nextRoomLeftDoor: {fileID: 0}
+  tilemap: {fileID: 0}
 --- !u!1 &8855580407962585698
 GameObject:
   m_ObjectHideFlags: 0

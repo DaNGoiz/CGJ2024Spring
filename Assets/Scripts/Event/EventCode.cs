@@ -54,10 +54,6 @@
         /// </summary>
         SetCameraPosAndRot,
         /// <summary>
-        /// 改变text
-        /// </summary>
-        ChangeText,
-        /// <summary>
         /// 改变角色状态状态
         /// </summary>
         SwtichState,
