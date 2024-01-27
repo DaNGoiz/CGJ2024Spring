@@ -19,6 +19,7 @@ public class LevelMapBuilder : MonoBehaviour
     public float roomTransformDistance = 10f;
     public GameObject currentRoom;
     public GameObject teleport;
+    private GameObject nextRoomDoor;
 
     private GameObject[,] roomArray = new GameObject[50, 50];
     private int currentRoomX = 25;
@@ -59,7 +60,7 @@ public class LevelMapBuilder : MonoBehaviour
         {
             // 1. 检查当前方向是否已经绑定了下一个门
             Room currentRoomScript = currentRoom.GetComponent<Room>();
-            GameObject nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
+            nextRoomDoor = currentRoomScript.GetCorrespondingDoorInNextRoom(door.GetComponent<Door>().doorDirection);
 
             if(nextRoomDoor == null)
             {
@@ -149,7 +150,7 @@ public class LevelMapBuilder : MonoBehaviour
         return instantiatedObject;
     }
 
-    bool TryAddRoomToArray(GameObject room, Door.Direction direction)
+    bool TryAddRoomToArray(GameObject room, Door.Direction direction, bool lastRoom = false)
     {
         int x = currentRoomX;
         int y = currentRoomY;
@@ -158,11 +159,11 @@ public class LevelMapBuilder : MonoBehaviour
         else if (direction == Door.Direction.Left){y -= 1;}
         else if (direction == Door.Direction.Right){y += 1;}
 
-        if(roomArray[x, y] == null)
+        if(roomArray[x, y] == null || lastRoom)
         {
             currentRoomX = x;
             currentRoomY = y;
-            roomArray[currentRoomX, currentRoomY] = room;
+            if(!lastRoom) {roomArray[currentRoomX, currentRoomY] = room;}
             return true;
         }
         else{return false;}
@@ -175,6 +176,7 @@ public class LevelMapBuilder : MonoBehaviour
         CheckSingleDoorBinding(Door.Direction.Down, room);
         CheckSingleDoorBinding(Door.Direction.Left, room);
         CheckSingleDoorBinding(Door.Direction.Right, room);
+        ShowAnimAtDoor(nextRoomDoor);
     }
 
     void CheckSingleDoorBinding(Door.Direction currentDoorDirection, GameObject room)
@@ -207,6 +209,12 @@ public class LevelMapBuilder : MonoBehaviour
         {
             RemoveWall(currentDoorDirection);
         }
+    }
+
+    void ShowAnimAtDoor(GameObject door)
+    {
+        // show anim at position
+
     }
 
     GameObject GetRoomInDirection(Door.Direction direction)
@@ -274,7 +282,30 @@ public class LevelMapBuilder : MonoBehaviour
         wall.GetComponent<Wall>().isNaturalWall = true;
     }
 
-    public GameObject BuildLastRoom(GameObject door)
+    public void BuildLastRoom(GameObject door)
+    {
+        GameObject lastRoom = FindLastRoom(door);
+        Door.Direction currentDoorDirection = door.GetComponent<Door>().doorDirection;
+        if(lastRoom != null)
+        {
+            TryAddRoomToArray(lastRoom, currentDoorDirection, true);
+            if(roomArray[currentRoomX, currentRoomY] != null)
+            {
+                roomArray[currentRoomX, currentRoomY].SetActive(false);
+            }
+            lastRoom = InstantiateAtDirection(currentRoom, currentDoorDirection, lastRoom);
+            Vector3 roomPosition = lastRoom.transform.position;
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                player.transform.position = roomPosition;
+            }
+        }
+
+        
+    }
+
+    GameObject FindLastRoom(GameObject door)
     {
         Door.Direction oppositeDoorDirection = Door.GetOppositeDirection(door.GetComponent<Door>().doorDirection);
         if(oppositeDoorDirection == Door.Direction.Up) return lastRooms[0];
