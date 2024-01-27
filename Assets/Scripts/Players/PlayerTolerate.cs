@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YSFramework;
 
 public class PlayerTolerate : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerTolerate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        EventCenter.AddListener_Return<bool>(EventCode.SwitchInTrigger, SwitchInTrigger);
     }
 
     // Update is called once per frame
@@ -27,6 +28,11 @@ public class PlayerTolerate : MonoBehaviour
         transform.localPosition = new Vector2(0, 0);//重置回中心
         laughing = isChangeState;
         return laughing?"true":"false";
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener_Return<bool>(EventCode.SwitchInTrigger, SwitchInTrigger);
     }
 
 }

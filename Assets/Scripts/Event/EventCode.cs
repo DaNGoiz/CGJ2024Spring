@@ -64,6 +64,10 @@
         /// <summary>
         /// 改变砖块状态
         /// </summary>
-        SwitchOrganState
+        SwitchOrganState,
+        /// <summary>
+        /// 当玩家从忍受转变为迎战的状态切换
+        /// </summary>
+        SwitchInTrigger,
     }
 }

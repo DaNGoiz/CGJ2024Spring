@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -20,11 +19,7 @@ public class CameraController : MonoBehaviour
 
     void CameraMove()
     {
-
-
         this.gameObject.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
-
-
         if (this.transform.position.x >= 2)
         {
             this.transform.position = new Vector3(2, 0, -10);
@@ -33,6 +28,7 @@ public class CameraController : MonoBehaviour
         {
             this.transform.position = new Vector3(-2, 0, -10);
         }
-
     }
+
+   
 }
