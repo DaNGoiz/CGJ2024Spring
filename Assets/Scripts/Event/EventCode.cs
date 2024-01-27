@@ -52,11 +52,7 @@
         /// <summary>
         /// 设置摄像机位置和旋转
         /// </summary>
-        SetCameraPosAndRot,
-        /// <summary>
-        /// 改变text
-        /// </summary>
-        ChangeText,
+        SetCameraPosAndRot
         /// <summary>
         /// 改变角色状态状态
         /// </summary>
