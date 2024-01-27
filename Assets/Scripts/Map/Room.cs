@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
     public bool up, down, left, right;
     public GameObject currentUpDoor, currentDownDoor, currentLeftDoor, currentRightDoor; // 当前房间的门
-    public GameObject upWall, downWall, leftWall, rightWall; // 当前房间的墙
     public GameObject nextRoomDownDoor, nextRoomUpDoor, nextRoomRightDoor, nextRoomLeftDoor; // 通往下一个房间的门
-    public Tilemap tilemap;
 
     void OnValidate()
     {
@@ -56,26 +53,23 @@ public class Room : MonoBehaviour
         }
     }
 
-    public GameObject GetCorrespondingWall(Door.Direction currentDoorDirection)
+    public bool HasDoor(Door.Direction direction)
     {
-        switch (currentDoorDirection)
+        switch (direction)
         {
             case Door.Direction.Up:
-                return upWall;
+                return down;
             case Door.Direction.Down:
-                return downWall;
+                return up;
             case Door.Direction.Left:
-                return leftWall;
+                return right;
             case Door.Direction.Right:
-                return rightWall;
+                return left;
             default:
-                return null;
+                return false;
         }
     }
 
-    /// <summary>
-    /// This room door direction + next room door
-    /// </summary>
     public void BindDoor(Door.Direction direction, GameObject door)
     {
         switch (direction)
@@ -92,26 +86,6 @@ public class Room : MonoBehaviour
             case Door.Direction.Right:
                 nextRoomLeftDoor = door;
                 break;
-        }
-    }
-
-    public void RemoveTileInDirection(Door.Direction direction)
-    {
-        if(direction == Door.Direction.Up)
-        {
-            tilemap.SetTile(new Vector3Int(-1, 5, 0), null);
-        }
-        else if(direction == Door.Direction.Down)
-        {
-            tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
-        }
-        else if(direction == Door.Direction.Left)
-        {
-            tilemap.SetTile(new Vector3Int(-12, 0, 0), null);
-        }
-        else if(direction == Door.Direction.Right)
-        {
-            tilemap.SetTile(new Vector3Int(10, 0, 0), null);
         }
     }
 }

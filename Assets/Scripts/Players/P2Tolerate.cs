@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2Tolerate : PlayerTolerate
+public class P2Tolerate : MonoBehaviour
 {
     //SF
     [SerializeField]
@@ -10,6 +10,7 @@ public class P2Tolerate : PlayerTolerate
 
     //NoSF
     float shakeTime;
+    private bool laughing;
     static public bool[] phaseP2;//憋笑阶段,转阶段了吗
     static public float tolerateBarP2;
 
@@ -27,8 +28,9 @@ public class P2Tolerate : PlayerTolerate
     {
         shakeTime += Time.deltaTime;
         TolerateLaugh();
-
-        // 以下时数值测试用的
+        ///
+        /// 以下时数值测试用的
+        ///
         tltBarP2 = tolerateBarP2;
     }
     void TolerateLaugh()//憋笑条的控制，憋憋
@@ -114,22 +116,20 @@ public class P2Tolerate : PlayerTolerate
             }
             else if (tolerateBarP2 > 100)
             {
-                Player1CTRL.laughTriggerP1 = Player2CTRL.laughTriggerP2 = SwitchInTrigger(true);
-                Debug.Log("P2进入二阶段");
-                
+                laughing = true;
+                tolerateBarP2 = 100;
             }
+        }
+        else
+        {
+            transform.localPosition = new Vector2(0, 0);//重置回中心
+            Player2CTRL.laughTriggerP2 = true;
+            Debug.Log("P2进入二阶段");
         }
         if (tolerateBarP2 > 100)
         {
             tolerateBarP2 = 100;
         }
-        //二阶段处理
-        if(Player2CTRL.laughTriggerP2)
-        {
-            for (int i = 0; i < phaseP2.Length; i++)
-            {
-                phaseP2[i] = true;
-            }
-        }
+
     }
 }
