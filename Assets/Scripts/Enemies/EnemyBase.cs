@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+    public int health;
     public Animator enemyAnim;
     public BoxCollider2D enemyCollider;
     public enum enemyState
@@ -13,6 +14,7 @@ public class EnemyBase : MonoBehaviour
         attack,
         dead
     }
+
     // Start is called before the first frame update
     void Start()
     {
