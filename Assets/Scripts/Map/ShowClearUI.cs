@@ -26,7 +26,7 @@ public class ShowClearUI : MonoBehaviour
         yield return FadeToColor(firstImage.color, Color.white, 2f, firstImage);
 
         // 渐变到饱和色
-        yield return FadeToColor(Color.white, Color.red, 1f, firstImage);
+        yield return FadeToColor(Color.white, firstImage.color, 1f, firstImage);
 
         // 等待 5 秒
         yield return new WaitForSeconds(5f);
