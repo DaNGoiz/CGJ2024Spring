@@ -27,14 +27,8 @@ public class StartPanel : BasePanel
     {
         if(Input.anyKeyDown)
         {
-            
-            if(!isEffect)
-            {
-                isEffect = true;
-                effect.Show();
-                StartCoroutine(LoadScene());
-            }
-           
+            effect.Show();
+            StartCoroutine(LoadScene());
         }
 
        
