@@ -21,7 +21,7 @@ public class MortarFlower : Plant
     private void Start()
     {
         detectCooldown = 5;
-        warningTime = 2;
+        warningTime = 1.6f;
         atkTimerName = TimerInstance.CreateCommonTimer("MotarFlower");
         TimerInstance.StartTimer(atkTimerName);
     }

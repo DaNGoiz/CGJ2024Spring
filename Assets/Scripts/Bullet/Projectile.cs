@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// 当前飞行方向
     /// </summary>
-    private Vector2 direction;
+    protected Vector2 direction;
     /// <summary>
     /// 飞行速度或毒雾的蔓延速度，常规为1
     /// </summary>
@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
     }
     protected virtual void Update()
     {
-        rb.velocity = direction * speed;
+        if (rb != null)
+            rb.velocity = direction * speed;
     }
     protected virtual void OnTriggerEnter2D(Collider2D collider) { }
 }
