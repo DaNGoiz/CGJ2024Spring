@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/HideEffect.cs.meta
-guid: a9a48d921dee2384e821563cf132582d
-========
-guid: 39af3f90bc525d646b678b31b9bd36eb
->>>>>>>> origin/ToxicPlants:Assets/Scripts/Bullet/Blast.cs.meta
+guid: 4edb0c41659e5e241a8ae4a3a4cf04ea
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
