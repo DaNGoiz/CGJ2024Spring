@@ -19,11 +19,11 @@ namespace YSFramework
         /// <summary>
         /// UI事件
         /// </summary>
-        private EventSystem eventSystem;
+        private EventSystem eventSystem; 
         /// <summary>
         /// 当前的聚焦序号
         /// </summary>
-        private int index = 0;
+        private int index = 0;   
         /// <summary>
         /// 开始方法，用于自动获取UI事件并自动获取所有可交互UI
         /// </summary>

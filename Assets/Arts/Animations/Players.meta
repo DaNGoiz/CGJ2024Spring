@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Arts/Animations/Players.meta
 guid: f55f6728ffdfc3e49abd1bd6dd4a888e
+========
+guid: c6ac6d1829a0f6c47ba32f4fe0a2d82b
+>>>>>>>> origin/Ann9iVOR:Assets/Arts/Animations/Enemies.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
