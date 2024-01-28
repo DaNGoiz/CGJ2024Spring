@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 1a9faf453f0d78f4db4dd372599f676d
 NativeFormatImporter:
   externalObjects: {}
+<<<<<<< HEAD
   mainObjectFileID: 0
+=======
+  mainObjectFileID: 9100000
+>>>>>>> origin/ToxicPlants
   userData: 
   assetBundleName: 
   assetBundleVariant: 

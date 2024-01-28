@@ -13,11 +13,15 @@ GameObject:
   - component: {fileID: 1208602955}
   - component: {fileID: 1258992506588247825}
   m_Layer: 9
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Resources/Plants/GhostFlower.prefab
   m_Name: GhostFlower
 ========
   m_Name: TribleShooter
 >>>>>>>> origin/ToxicPlants:Assets/Resources/Plants/TribleShooter.prefab
+=======
+  m_Name: GhostFlower
+>>>>>>> origin/ToxicPlants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

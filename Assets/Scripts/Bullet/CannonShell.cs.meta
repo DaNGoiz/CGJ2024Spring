@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Bullet/CannonShell.cs.meta
 guid: 7e4c3d3bcd5d6c14aa26ae4dab8004fe
+========
+guid: 39af3f90bc525d646b678b31b9bd36eb
+>>>>>>>> origin/ToxicPlants:Assets/Scripts/Bullet/Blast.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

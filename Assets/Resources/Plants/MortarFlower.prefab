@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1055982180636485077}
   - component: {fileID: 3052419372128093987}
   - component: {fileID: 3455167726563996891}
-  m_Layer: 0
+  - component: {fileID: 816183867}
+  m_Layer: 9
   m_Name: MortarFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,3 +106,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &816183867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994330151883432326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba125451002c66843a9bd5cc12f8c392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animator: {fileID: 3455167726563996891}
+  m_renderer: {fileID: 3052419372128093987}
+  attackDirection: {x: 0, y: 0}
+  atkInterval: 5
+  dirX: 0
+  dirY: 0
+  projPrefab: {fileID: 5379683647861179091, guid: 26f7ce57d76b49946866906d3dc02e5b, type: 3}
+  blastRadius: 0
