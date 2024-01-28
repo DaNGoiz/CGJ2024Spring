@@ -9,8 +9,7 @@ public class Player2CTRL : PlayerCTRL
 {
     //with SF
     #region SF
-    [SerializeField]
-    private float speed;
+
 
     #endregion
 

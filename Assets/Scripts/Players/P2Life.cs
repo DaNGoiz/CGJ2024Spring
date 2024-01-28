@@ -36,11 +36,11 @@ public class P2Life : MonoBehaviour
         {
             unDead = false;
         }
-        if (unDead || life > 10)
+        if (unDead || lifeP2 > 10)
         {
-            life = 10;
+            lifeP2 = 10;
         }
-        lifeP2 = life;
+        life = lifeP2;
     }
 
 }

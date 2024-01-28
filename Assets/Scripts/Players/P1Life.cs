@@ -40,7 +40,7 @@ public class P1Life : MonoBehaviour
         {
             life = 10;
         }
-        lifeP1 = life;
+        life=lifeP1;
     }
 
 }

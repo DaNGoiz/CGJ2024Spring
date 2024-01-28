@@ -19,13 +19,15 @@ public class LaughFlower : EnemyBase
         StateDecide();
         switch (state)
         {
-            case enemyState.rest:
+            case enemyState.rest://歇
                 break;
-            case enemyState.active:
+            case enemyState.active://动
+                //自寻路
                 break;
-            case enemyState.attack:
+            case enemyState.attack://打
+                //云底
                 break;
-            case enemyState.dead:
+            case enemyState.dead://寄
                 break;
             default:
                 break;
@@ -49,5 +51,21 @@ public class LaughFlower : EnemyBase
         {
             state = enemyState.dead;
         }
+    }
+    void InRest()
+    {
+        enemyCollider.isTrigger = true;
+    }
+    void InActive()
+    {
+        enemyCollider.isTrigger = false;
+    }
+    void InAttack()
+    {
+        enemyCollider.isTrigger = false;
+    }
+    void InDead()
+    {
+        enemyCollider.isTrigger = true;
     }
 }

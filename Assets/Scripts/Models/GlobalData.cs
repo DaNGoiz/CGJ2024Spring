@@ -33,5 +33,10 @@ namespace YSFramework
         /// 通讯进程字典
         /// </summary>
         public static Dictionary<string, object> CommunicationProcessDict = new Dictionary<string, object>();
+
+        /// <summary>
+        /// 关卡的敌人名单
+        /// </summary>
+        public static List<EnemyBase> EnemyList = new List<EnemyBase>();
     }
 }

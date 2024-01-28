@@ -11,8 +11,6 @@ public class Player1CTRL : PlayerCTRL
     //with SF
     #region SF
     [SerializeField]
-    private float speed;
-    [SerializeField]
     float tltBarP1;
 
     #endregion
@@ -274,4 +272,6 @@ public class Player1CTRL : PlayerCTRL
             }
         }
     }
+
+
 }
