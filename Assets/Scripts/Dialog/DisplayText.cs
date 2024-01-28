@@ -31,6 +31,7 @@ public class DisplayText : MonoBehaviour
 
     [Header("Effect")]
     public float textSpeed;
+    public float waitSpeed;
 
     bool isTypingFinished;
     bool cancelTyping;
@@ -62,32 +63,9 @@ public class DisplayText : MonoBehaviour
             return;
         }
 
-        if (Input.anyKeyDown)
+        if (isTypingFinished && currentLine < textList.Count)
         {
-            if (isTypingFinished && !cancelTyping)
-            {
-                StartCoroutine(PlayTextByCharacter());
-            }
-            else if (!isTypingFinished)
-            {
-                cancelTyping = !cancelTyping;
-            }
-        }
-    }
-
-    void GetTextFronFile(TextAsset textFile)
-    {
-        textList.Clear();
-        currentLine = 0;
-
-        if (textFile != null)
-        {
-            string text = textFile.text;
-            var lines = text.Split('\n');
-            foreach (var line in lines)
-            {
-                textList.Add(line.Trim()); // 使用 Trim() 移除多余的空白字符
-            }
+            StartCoroutine(PlayTextByCharacter());
         }
     }
 
@@ -109,7 +87,7 @@ public class DisplayText : MonoBehaviour
         }
 
         int letter = 0;
-        while(!cancelTyping && letter < textList[currentLine].Length - 1)
+        while (!cancelTyping && letter < textList[currentLine].Length - 1)
         {
             textLabel.text += textList[currentLine][letter];
             letter++;
@@ -118,6 +96,35 @@ public class DisplayText : MonoBehaviour
         textLabel.text = textList[currentLine];
         cancelTyping = false;
         isTypingFinished = true;
-        currentLine++;
+
+        // 等待一段时间后自动开始下一行文本
+        yield return new WaitForSeconds(textSpeed * textList[currentLine].Length);
+        if (currentLine < textList.Count - 1)
+        {
+            currentLine++;
+            StartCoroutine(PlayTextByCharacter());
+        }
+        else
+        {
+            // 所有文本播放完成，可以在此处进行其他操作
+            gameObject.SetActive(false);
+        }
+    }
+
+
+    void GetTextFronFile(TextAsset textFile)
+    {
+        textList.Clear();
+        currentLine = 0;
+
+        if (textFile != null)
+        {
+            string text = textFile.text;
+            var lines = text.Split('\n');
+            foreach (var line in lines)
+            {
+                textList.Add(line.Trim()); // 使用 Trim() 移除多余的空白字符
+            }
+        }
     }
 }
