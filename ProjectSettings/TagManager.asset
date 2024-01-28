@@ -16,7 +16,7 @@ TagManager:
   - 
   - Plant
   - Player
-  - 
+  - Enemies
   - 
   - Misc
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: WarningArea
     uniqueID: 1620890103
+    locked: 0
+  - name: Blast
+    uniqueID: 3334546913
     locked: 0
   - name: Plant
     uniqueID: 789333989
