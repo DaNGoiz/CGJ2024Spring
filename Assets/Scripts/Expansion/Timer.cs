@@ -153,7 +153,7 @@ public class Timer : MonoBehaviour
                 isRunning = false;
         }
     }
-    private class EventTimer 
+    private class EventTimer
     {
         public string name;
         /// <summary>
@@ -190,7 +190,6 @@ public class Timer : MonoBehaviour
         }
         public float threshold;
         private Action<object[]> timerEvent;
-
         private object[] timerArgs;
         private bool disposeSelf;
         private bool isAutoStart;

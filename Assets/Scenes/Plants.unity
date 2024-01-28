@@ -244,7 +244,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 3
+>>>>>>> parent of a69baef (创建笑声弹幕)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &229302617
 Rigidbody2D:
@@ -390,7 +394,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1055982180636485077, guid: 4683b220f4e9e2041b621cfe5618dd58, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1055982180636485077, guid: 4683b220f4e9e2041b621cfe5618dd58, type: 3}
       propertyPath: m_LocalPosition.x

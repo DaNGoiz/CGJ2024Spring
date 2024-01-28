@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2281230616828213096}
   - component: {fileID: 4216587663959208182}
   - component: {fileID: -3960930083626674519}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -960420383
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1055548131, guid: c916634b406f2f54888655812178e59e, type: 3}
+  m_Sprite: {fileID: -552280820, guid: 188227b6fbf8bcc4d9cc134c56fcf944, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
