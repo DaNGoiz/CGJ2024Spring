@@ -64,6 +64,11 @@ namespace YSFramework
                     if (o != null)
                         o = Instantiate((GameObject)o);
                     break;
+                case ResourceType.Projectile:
+                    o = Resources.Load<Material>("Projectiles/" + objectName);
+                    if (o != null)
+                        o = Instantiate((GameObject)o);
+                    break;
                 default:
                     break;
             }
