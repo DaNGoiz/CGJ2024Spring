@@ -105,4 +105,8 @@ public class Plant : MonoBehaviour
             Debug.LogError("projectile is null");
         return projObj;
     }
+    protected void OnObjectDestroy()
+    {
+        TimerInstance.RemoveTimer(autoAttackTimerName);
+    }
 }

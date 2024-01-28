@@ -13,11 +13,7 @@ GameObject:
   - component: {fileID: 1208602955}
   - component: {fileID: 1258992506588247825}
   m_Layer: 9
-<<<<<<<< HEAD:Assets/Resources/Plants/GhostFlower.prefab
-  m_Name: GhostFlower
-========
   m_Name: TribleShooter
->>>>>>>> origin/ToxicPlants:Assets/Resources/Plants/TribleShooter.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,5 +125,3 @@ MonoBehaviour:
   dirX: 0
   dirY: 0
   projPrefab: {fileID: 3955948856452564753, guid: 7dabe6e6d20b2d84c9e862d177d7a048, type: 3}
-  isTrible: 1
-  angle: 30

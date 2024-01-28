@@ -16,7 +16,7 @@ TagManager:
   - 
   - Plant
   - Player
-  - Enemies
+  - 
   - 
   - Misc
   - 
@@ -44,12 +44,18 @@ TagManager:
   - name: WarningArea
     uniqueID: 1620890103
     locked: 0
-  - name: Blast
-    uniqueID: 3334546913
-    locked: 0
   - name: Plant
     uniqueID: 789333989
     locked: 0
   - name: Projectile
     uniqueID: 2944336173
+    locked: 0
+  - name: Facing
+    uniqueID: 4148886683
+    locked: 0
+  - name: ShootPt
+    uniqueID: 1705543187
+    locked: 0
+  - name: Player
+    uniqueID: 660160457
     locked: 0

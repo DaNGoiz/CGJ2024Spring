@@ -24,13 +24,10 @@ public class CannonShell : Projectile
         //Booooooooooooooooooooom!
         rb.velocity = Vector3.zero;
         animator.SetTrigger("Blast");
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.55f, LayerMask.GetMask(LayerName.Player));
-        if (cols.Length > 0)
+        Collider2D col = Physics2D.OverlapCircle(transform.position, 0.55f, LayerMask.GetMask(LayerName.Player));
+        if (col)
         {
-            foreach (Collider2D col in cols)
-            {
-                //玩家受击
-            }
+            //玩家受击
         }
     }
     public void DestroySelf()
