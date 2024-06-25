@@ -1,10 +1,5 @@
 # Echo Dungeon
 
-## Contributors
-<a href="https://github.com/DaNGoiz/Echo-Dungeon/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=DaNGoiz/Echo-Dungeon" />
-</a>
-
 ## Introduction
 
 **Echo Dungeon** is a two-player local shooting game, a creation for the 2024 Global Game Jam. Players will take on the roles of two sisters who accidentally venture into the City of Laughter, where they must dodge attacks from laugh-inducing plants or laugh out loud to fend off enemies!
@@ -24,6 +19,15 @@
 ![EchoDungeon2](images/echo-dungeon2.png)
 ![EchoDungeon3](images/echo-dungeon3.png)
 ![EchoDungeon4](images/echo-dungeon4.png)
+
+## Contributors
+<a href="https://github.com/DaNGoiz/Echo-Dungeon/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=DaNGoiz/Echo-Dungeon" />
+</a>
+Art: Chosens, Tan Xinran, LINZERBLUER
+Program: DaNGo_iz, Beihai, Undercloud, Ann9iVOR
+Gameplay: DaNGo_iz, Beihai, Undercloud, Chosens
+Music: Xing
 
 ---
 
