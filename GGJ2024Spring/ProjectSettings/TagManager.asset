@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - Plant
+  - Player
+  - Enemy
+  - 
+  - Misc
+  - 
+  - 
+  - Projectile
+  - Laugthter_Player
+  - Laugthter_Enemy
+  - 
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: WarningArea
+    uniqueID: 1620890103
+    locked: 0
+  - name: Facing
+    uniqueID: 4148886683
+    locked: 0
+  - name: ShootPt
+    uniqueID: 1705543187
+    locked: 0
+  - name: Wall
+    uniqueID: 1448161927
+    locked: 0
+  - name: Ground
+    uniqueID: 1874622357
+    locked: 0
+  - name: Envior
+    uniqueID: 1080608405
+    locked: 0
+  - name: Organ
+    uniqueID: 3057277775
+    locked: 0
+  - name: Plant
+    uniqueID: 789333989
+    locked: 0
+  - name: Player
+    uniqueID: 660160457
+    locked: 0
+  - name: Projectile
+    uniqueID: 2944336173
+    locked: 0
