@@ -24,9 +24,13 @@
 <a href="https://github.com/DaNGoiz/Echo-Dungeon/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=DaNGoiz/Echo-Dungeon" />
 </a>
+
 Art: Chosens, Tan Xinran, LINZERBLUER
+
 Program: DaNGo_iz, Beihai, Undercloud, Ann9iVOR
+
 Gameplay: DaNGo_iz, Beihai, Undercloud, Chosens
+
 Music: Xing
 
 ---
